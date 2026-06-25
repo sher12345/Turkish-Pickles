@@ -1575,7 +1575,7 @@ table.adm-table tbody td { padding: 12px 14px; font-size: 13px; color: #aaa; }
 const SUPABASE_URL = 'https://dauesiuxkvwugraggdjp.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRhdWVzaXV4a3Z3dWdyYWdnZGpwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE2OTA1OTAsImV4cCI6MjA5NzI2NjU5MH0.kkfk2LieOFs2NIwMADohpyGOyno9bfF29f9yVYD0lmY';
 
-// Declare sb on window to make it globally accessible
+// Global sb — accessible from all functions
 window.sb = null;
 
 function initSupabase() {
@@ -1592,10 +1592,9 @@ function initSupabase() {
     }
 }
 
-// Try immediately, retry if not ready
 initSupabase();
 </script>
-
+<script>
 /* ═══════════════════════════════════════
    ROUTING
 ═══════════════════════════════════════ */
@@ -1616,8 +1615,8 @@ window.addEventListener('load', () => {
    ADMIN AUTH
 ═══════════════════════════════════════ */
 async function checkAdmSession() {
-  if (!sb) return;
-  const { data: { session } } = await sb.auth.getSession();
+  if (!window.sb) return;
+  const { data: { session } } = await window.sb.auth.getSession();
   if (session) showAdmDashboard(session.user);
 }
 async function admLogin() {
@@ -1630,13 +1629,13 @@ async function admLogin() {
   errEl.classList.remove('show');
   if (!email || !pass) { errEl.textContent='Enter email and password.'; errEl.classList.add('show'); return; }
   btn.disabled=true; spin.style.display='block'; txt.textContent='Signing in...';
-  const { data, error } = await sb.auth.signInWithPassword({ email, password: pass });
+  const { data, error } = await window.sb.auth.signInWithPassword({ email, password: pass });
   btn.disabled=false; spin.style.display='none'; txt.textContent='Sign In';
   if (error) { errEl.textContent=error.message||'Login failed.'; errEl.classList.add('show'); return; }
   showAdmDashboard(data.user);
 }
 async function admLogout() {
-  await sb.auth.signOut();
+  await window.sb.auth.signOut();
   document.getElementById('adm-dashboard').style.display='none';
   document.getElementById('adm-login-screen').style.display='flex';
   allResponses=[];
@@ -1654,8 +1653,8 @@ function showAdmDashboard(user) {
 let allResponses = [];
 async function loadResponses() {
   document.getElementById('adm-table-body').innerHTML=`<div class="adm-loading"><div class="adm-spin"></div><div style="font-size:13px;font-weight:600;color:#3a5030;">Loading...</div></div>`;
-  if (!sb) { document.getElementById('adm-table-body').innerHTML=`<div class="adm-empty"><div class="adm-empty-icon">⚠️</div><div>Supabase not configured.</div></div>`; return; }
-  const { data, error } = await sb.from('tursu_survey').select('*').order('submitted_at', { ascending: false });
+  if (!window.sb) { document.getElementById('adm-table-body').innerHTML=`<div class="adm-empty"><div class="adm-empty-icon">⚠️</div><div>Supabase not configured.</div></div>`; return; }
+  const { data, error } = await window.sb.from('tursu_survey').select('*').order('submitted_at', { ascending: false });
   if (error) { document.getElementById('adm-table-body').innerHTML=`<div class="adm-empty"><div class="adm-empty-icon">❌</div><div>${error.message}</div></div>`; return; }
   allResponses = data || [];
   updateAdmStats();
@@ -1742,7 +1741,7 @@ function openDrawer(id) {
       <div class="drw-section-title">Personal Info</div>
       <div class="drw-grid">
         <div class="drw-field"><dt>Name</dt><dd class="white">${esc(r.name)}</dd></div>
-        <div class="drw-field"><dt>Phone</dt><dd>${r.phone?`<a href="https://wa.me/92${.replace(/\D/g,'')}" target="_blank" style="color:#8dd9a8;">${esc(r.phone)}</a>`:'—'}</dd></div>
+        <div class="drw-field"><dt>Phone</dt><dd>${r.phone?`<a href="https://wa.me/92${(r.phone||'').replace(/\D/g,'')}" target="_blank" style="color:#8dd9a8;">${esc(r.phone)}</a>`:'—'}</dd></div>
         <div class="drw-field"><dt>City</dt><dd>${esc(r.city||'—')}</dd></div>
         <div class="drw-field"><dt>Age Group</dt><dd>${esc(r.age_group||'—')}</dd></div>
       </div>
@@ -1896,9 +1895,9 @@ would_recommend:    document.querySelector('input[name="recommend"]:checked')?.v
     submitted_at:       new Date().toISOString(),
   };
 
-  if (sb) {
+  if (window.sb) {
     try {
-      await sb.from('tursu_survey').insert([payload]);
+      await window.sb.from('tursu_survey').insert([payload]);
     } catch(e) { console.error(e); }
   }
 
