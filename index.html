@@ -1570,16 +1570,31 @@ table.adm-table tbody td { padding: 12px 14px; font-size: 13px; color: #aaa; }
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* ═══════════════════════════════════════
-   CONFIG — replace with your Supabase creds
+   CONFIG
 ═══════════════════════════════════════ */
 const SUPABASE_URL = 'https://dauesiuxkvwugraggdjp.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRhdWVzaXV4a3Z3dWdyYWdnZGpwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE2OTA1OTAsImV4cCI6MjA5NzI2NjU5MH0.kkfk2LieOFs2NIwMADohpyGOyno9bfF29f9yVYD0lmY';
-let sb = null;
-try { 
-    sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY); 
-} catch(e) { 
-    console.error('Supabase init failed:', e); 
+
+// Declare sb on window to make it globally accessible
+window.sb = null;
+
+function initSupabase() {
+    if (typeof window.supabase === 'undefined' || !window.supabase.createClient) {
+        console.error('Supabase library not loaded yet. Retrying...');
+        setTimeout(initSupabase, 500);
+        return;
+    }
+    try {
+        window.sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        console.log('✅ Supabase initialized');
+    } catch(e) {
+        console.error('❌ Supabase init failed:', e);
+    }
 }
+
+// Try immediately, retry if not ready
+initSupabase();
+</script>
 
 /* ═══════════════════════════════════════
    ROUTING
