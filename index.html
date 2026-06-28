@@ -1,1928 +1,1164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="scroll-smooth" lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Turkish Turşu Survey — Pakistan</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Turcu House | The Future of Crunch</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#00442b",
+          "emerald-deep": "#1a5c40",
+          "primary-container": "#1a5c40",
+          "heritage-gold": "#c8913a",
+          "surface": "#fdf9f1",
+          "brine-cream": "#faf6ee",
+          "on-surface": "#1c1c17",
+          "on-surface-variant": "#404943",
+          "surface-variant": "#e6e2da",
+          "surface-container-low": "#f7f3eb",
+          "surface-container": "#f1ede6",
+          "surface-container-high": "#ece8e0",
+          "surface-container-highest": "#e6e2da",
+          "outline-variant": "#bfc9c1",
+          "outline": "#707972",
+          "error": "#ba1a1a",
+          "glass-fill": "rgba(250,246,238,0.7)",
+          "glass-stroke": "rgba(26,92,64,0.1)",
+          "primary-fixed-dim": "#93d4b1",
+          "on-primary-fixed": "#002113",
+          "secondary-container": "#ffc165",
+          "secondary": "#815600",
+        },
+        fontFamily: {
+          "display": ["Playfair Display"],
+          "body": ["Inter"],
+        }
+      }
+    }
+  }
+</script>
 <style>
-/* ═══════════════════════════
-   TOKENS
-═══════════════════════════ */
-:root {
-  --emerald:    #1a5c40;
-  --emerald-dk: #0f3d2a;
-  --emerald-lt: #2a7a56;
-  --mint:       #d4ede2;
-  --gold:       #c8913a;
-  --gold-dk:    #9c6e27;
-  --gold-lt:    #f5d9a8;
-  --cream:      #faf6ee;
-  --white:      #ffffff;
-  --ink:        #1c1c1c;
-  --muted:      #6b7060;
-  --border:     #d8d4c8;
-  --red:        #c0392b;
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-body:    'Inter', sans-serif;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: var(--font-body); background: var(--cream); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
-
-/* ═══════════════════════════
-   PATTERN BACKGROUND
-═══════════════════════════ */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image:
-    radial-gradient(circle at 20% 20%, rgba(26,92,64,0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(200,145,58,0.05) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ═══════════════════════════
-   TOP BANNER
-═══════════════════════════ */
-.top-bar {
-  background: var(--emerald-dk);
-  color: rgba(255,255,255,0.75);
-  text-align: center;
-  padding: 9px 20px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-}
-.top-bar em { color: var(--gold-lt); font-style: normal; }
-
-/* ═══════════════════════════
-   HEADER
-═══════════════════════════ */
-.site-header {
-  background: var(--emerald);
-  padding: 0 32px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 4px 24px rgba(15,61,42,0.3);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.logo {
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 900;
-  color: white;
-  letter-spacing: -0.5px;
-}
-.logo span { color: var(--gold-lt); }
-.header-pill {
-  background: rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.85);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 5px 14px;
-  border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.2);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.admin-link {
-  background: rgba(200,145,58,0.2);
-  color: var(--gold-lt);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  border-radius: 20px;
-  border: 1px solid rgba(200,145,58,0.35);
-  text-decoration: none;
-  transition: all 0.2s;
-  cursor: pointer;
-}
-.admin-link:hover { background: rgba(200,145,58,0.35); }
-
-/* ═══════════════════════════
-   HERO SECTION
-═══════════════════════════ */
-.hero {
-  background: linear-gradient(135deg, var(--emerald-dk) 0%, var(--emerald) 60%, #2d7a54 100%);
-  padding: 56px 24px 64px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0; right: 0;
-  height: 48px;
-  background: var(--cream);
-  clip-path: ellipse(55% 100% at 50% 100%);
-}
-/* Decorative circles */
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -80px; right: -80px;
-  width: 320px; height: 320px;
-  border-radius: 50%;
-  border: 2px solid rgba(200,145,58,0.15);
-}
-.hero-jar {
-  display: block;
-  margin: 0 auto 24px;
-  filter: drop-shadow(0 12px 32px rgba(0,0,0,0.35));
-  animation: jar-float 4s ease-in-out infinite;
-}
-@keyframes jar-float {
-  0%, 100% { transform: translateY(0px) rotate(-1deg); }
-  50%       { transform: translateY(-10px) rotate(1deg); }
-}
-.hero-eyebrow {
-  font-family: var(--font-body);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--gold-lt);
-  margin-bottom: 14px;
-  opacity: 0.9;
-}
-.hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(30px, 5vw, 52px);
-  font-weight: 900;
-  color: white;
-  line-height: 1.1;
-  margin-bottom: 14px;
-  letter-spacing: -1px;
-}
-.hero-title span { color: var(--gold-lt); }
-.hero-sub {
-  font-size: 15px;
-  color: rgba(255,255,255,0.65);
-  max-width: 520px;
-  margin: 0 auto 24px;
-  line-height: 1.7;
-  font-weight: 400;
-}
-.hero-meta {
-  display: inline-flex;
-  align-items: center;
-  gap: 20px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 50px;
-  padding: 10px 24px;
-  font-size: 12px;
-  color: rgba(255,255,255,0.6);
-  font-weight: 600;
-}
-.hero-meta span { color: var(--gold-lt); }
-
-/* ═══════════════════════════
-   MAIN LAYOUT
-═══════════════════════════ */
-.main {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 40px 20px 80px;
-  position: relative;
-  z-index: 1;
-}
-
-/* ═══════════════════════════
-   PROGRESS
-═══════════════════════════ */
-.progress-wrap {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 18px 22px;
-  margin-bottom: 28px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-}
-.progress-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--muted);
-  white-space: nowrap;
-}
-.progress-bar-bg {
-  flex: 1;
-  height: 6px;
-  background: var(--mint);
-  border-radius: 3px;
-  overflow: hidden;
-}
-.progress-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--emerald), var(--gold));
-  border-radius: 3px;
-  transition: width 0.5s ease;
-}
-.progress-pct {
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--emerald);
-  white-space: nowrap;
-}
-
-/* ═══════════════════════════
-   STAGE SYSTEM
-═══════════════════════════ */
-.stage { display: none; }
-.stage.active { display: block; animation: fadeUp 0.35s ease; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-
-/* ═══════════════════════════
-   CARDS
-═══════════════════════════ */
-.card {
-  background: white;
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  overflow: hidden;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.05);
-}
-.card-header {
-  padding: 18px 24px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  background: linear-gradient(135deg, #fafaf7, white);
-}
-.card-icon {
-  width: 42px; height: 42px;
-  border-radius: 12px;
-  background: var(--mint);
-  color: var(--emerald);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  flex-shrink: 0;
-}
-.card-title {
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--ink);
-}
-.card-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-.card-body { padding: 26px; }
-
-/* ═══════════════════════════
-   FIELDS
-═══════════════════════════ */
-.field-grid { display: grid; gap: 18px; }
-.field-grid.two { grid-template-columns: 1fr 1fr; }
-@media(max-width:560px) { .field-grid.two { grid-template-columns: 1fr; } }
-.field { display: flex; flex-direction: column; gap: 7px; }
-.field label {
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  color: var(--ink);
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.req { color: var(--red); }
-.field input,
-.field select,
-.field textarea {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  font-family: var(--font-body);
-  font-size: 14px;
-  color: var(--ink);
-  background: #fafaf7;
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-}
-.field input:focus,
-.field select:focus,
-.field textarea:focus {
-  border-color: var(--emerald);
-  background: white;
-  box-shadow: 0 0 0 3px rgba(26,92,64,0.08);
-}
-.field input.error,
-.field select.error,
-.field textarea.error { border-color: var(--red); background: #fff5f5; }
-.err-msg { font-size: 11px; color: var(--red); font-weight: 600; display: none; }
-.field.has-error .err-msg { display: block; }
-.field textarea { resize: vertical; min-height: 80px; }
-
-/* ═══════════════════════════
-   PILLS (radio/check)
-═══════════════════════════ */
-.pill-group { display: flex; flex-wrap: wrap; gap: 8px; }
-.pill {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 9px 16px;
-  border: 1.5px solid var(--border);
-  border-radius: 50px;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--muted);
-  background: #fafaf7;
-  transition: all 0.2s;
-  user-select: none;
-}
-.pill input { display: none; }
-.pill:has(input:checked) {
-  border-color: var(--emerald);
-  background: var(--mint);
-  color: var(--emerald);
-}
-.pill-gold:has(input:checked) {
-  border-color: var(--gold);
-  background: #fdf4e4;
-  color: var(--gold-dk);
-}
-
-/* ═══════════════════════════
-   SCALE RATING
-═══════════════════════════ */
-.scale-wrap { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
-.scale-btn {
-  width: 42px; height: 42px;
-  border-radius: 10px;
-  border: 1.5px solid var(--border);
-  background: #fafaf7;
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--muted);
-  cursor: pointer;
-  transition: all 0.18s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.scale-btn:hover { border-color: var(--emerald); color: var(--emerald); background: var(--mint); }
-.scale-btn.selected { background: var(--emerald); color: white; border-color: var(--emerald); box-shadow: 0 3px 10px rgba(26,92,64,0.3); }
-.scale-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); font-weight: 600; letter-spacing: 0.5px; margin-top: 6px; }
-
-/* ═══════════════════════════
-   SECTION DIVIDER
-═══════════════════════════ */
-.section-divider {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 28px 0 22px;
-}
-.section-divider::before,
-.section-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-}
-.section-divider-text {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--muted);
-  white-space: nowrap;
-}
-
-/* ═══════════════════════════
-   INFO BOX
-═══════════════════════════ */
-.info-box {
-  background: #f0f9f4;
-  border: 1px solid rgba(26,92,64,0.2);
-  border-radius: 12px;
-  padding: 14px 16px;
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 13px;
-  color: var(--emerald-dk);
-  font-weight: 500;
-  margin-bottom: 22px;
-  line-height: 1.6;
-}
-.info-box-gold {
-  background: #fdf8ee;
-  border-color: rgba(200,145,58,0.3);
-  color: #6b4a10;
-}
-
-/* ═══════════════════════════
-   BUTTONS
-═══════════════════════════ */
-.btn-primary {
-  width: 100%;
-  padding: 16px 24px;
-  background: var(--emerald);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  box-shadow: 0 5px 0 var(--emerald-dk);
-  transition: all 0.15s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  text-transform: uppercase;
-}
-.btn-primary:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--emerald-dk); }
-.btn-primary:disabled { opacity: 0.55; cursor: not-allowed; }
-.btn-gold {
-  background: var(--gold);
-  box-shadow: 0 5px 0 var(--gold-dk);
-}
-.btn-gold:active { box-shadow: 0 2px 0 var(--gold-dk); }
-.btn-row { display: flex; gap: 12px; }
-.btn-row .btn-primary { flex: 1; }
-.btn-back {
-  padding: 16px 20px;
-  background: white;
-  color: var(--muted);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
-  white-space: nowrap;
-}
-.btn-back:hover { border-color: var(--ink); color: var(--ink); }
-.spinner {
-  width: 18px; height: 18px;
-  border: 2.5px solid rgba(255,255,255,0.3);
-  border-top-color: white;
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-  display: none;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* ═══════════════════════════
-   THANK YOU SCREEN
-═══════════════════════════ */
-.thank-you {
-  background: linear-gradient(135deg, var(--emerald-dk), var(--emerald));
-  border-radius: 24px;
-  padding: 48px 40px;
-  text-align: center;
-  color: white;
-  margin-bottom: 24px;
-  position: relative;
-  overflow: hidden;
-  border: 2px solid rgba(200,145,58,0.3);
-}
-.thank-you::before {
-  content: '🫙';
-  position: absolute;
-  font-size: 140px;
-  right: -30px;
-  bottom: -30px;
-  opacity: 0.07;
-  line-height: 1;
-}
-.thank-you-icon { font-size: 64px; display: block; margin-bottom: 16px; }
-.thank-you-title {
-  font-family: var(--font-display);
-  font-size: 36px;
-  font-weight: 900;
-  color: white;
-  margin-bottom: 10px;
-  letter-spacing: -0.5px;
-}
-.thank-you-sub {
-  font-size: 15px;
-  color: rgba(255,255,255,0.65);
-  max-width: 440px;
-  margin: 0 auto 24px;
-  line-height: 1.7;
-}
-.thank-you-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(200,145,58,0.2);
-  border: 1px solid rgba(200,145,58,0.4);
-  color: var(--gold-lt);
-  padding: 10px 22px;
-  border-radius: 50px;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-/* ═══════════════════════════
-   TOAST
-═══════════════════════════ */
-.toast {
-  position: fixed;
-  bottom: 24px; right: 24px;
-  background: var(--ink);
-  color: white;
-  padding: 12px 18px;
-  border-radius: 12px;
-  font-size: 13px;
-  font-weight: 600;
-  border-left: 4px solid var(--emerald);
-  opacity: 0;
-  transform: translateY(14px);
-  transition: all 0.3s;
-  z-index: 9999;
-  max-width: 300px;
-}
-.toast.show { opacity: 1; transform: translateY(0); }
-.toast.success { border-left-color: #22c55e; }
-.toast.error   { border-left-color: var(--red); }
-
-/* ═══════════════════════════
-   HR / ADMIN PORTAL
-═══════════════════════════ */
-#admin-portal { display: none; min-height: 100vh; background: #0d1109; font-family: var(--font-body); }
-#admin-portal.active { display: flex; flex-direction: column; }
-
-.adm-login-wrap {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(ellipse at 30% 30%, rgba(26,92,64,0.15) 0%, transparent 60%), #0d1109;
-  padding: 20px;
-}
-.adm-login-box {
-  background: #161c12;
-  border: 1px solid #2a3322;
-  border-radius: 20px;
-  padding: 44px 40px;
-  width: 100%;
-  max-width: 400px;
-}
-.adm-logo {
-  font-family: var(--font-display);
-  font-size: 26px;
-  font-weight: 900;
-  color: white;
-  margin-bottom: 4px;
-}
-.adm-logo span { color: #8dd9a8; }
-.adm-badge {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #3a5030;
-  margin-bottom: 30px;
-}
-.adm-field { margin-bottom: 16px; }
-.adm-field label {
-  display: block;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  color: #5a6e50;
-  margin-bottom: 7px;
-}
-.adm-field input {
-  width: 100%;
-  padding: 13px 16px;
-  background: #0d1109;
-  border: 1.5px solid #2a3322;
-  border-radius: 10px;
-  color: white;
-  font-family: var(--font-body);
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.2s;
-}
-.adm-field input:focus { border-color: #4ade80; }
-.adm-login-btn {
-  width: 100%;
-  padding: 14px;
-  background: var(--emerald);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-top: 6px;
-  transition: opacity 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-.adm-login-btn:hover { opacity: 0.9; }
-.adm-login-err { color: #f87171; font-size: 12px; font-weight: 600; margin-top: 10px; display: none; }
-.adm-login-err.show { display: block; }
-
-/* Admin header */
-.adm-header {
-  background: #161c12;
-  border-bottom: 1px solid #2a3322;
-  padding: 0 28px;
-  height: 58px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-shrink: 0;
-}
-.adm-header-logo {
-  font-family: var(--font-display);
-  font-size: 17px;
-  font-weight: 900;
-  color: white;
-}
-.adm-header-logo span { color: #8dd9a8; }
-.adm-header-right { display: flex; align-items: center; gap: 14px; }
-.adm-user { font-size: 12px; color: #3a5030; font-weight: 600; }
-.adm-logout {
-  padding: 7px 14px;
-  background: transparent;
-  border: 1px solid #2a3322;
-  border-radius: 8px;
-  color: #5a6e50;
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.adm-logout:hover { border-color: #f87171; color: #f87171; }
-
-/* Admin body */
-.adm-body { flex: 1; padding: 24px 28px; overflow-y: auto; }
-
-/* Stats */
-.adm-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 22px; }
-.adm-stat {
-  background: #161c12;
-  border: 1px solid #2a3322;
-  border-radius: 14px;
-  padding: 18px 20px;
-}
-.adm-stat-val { font-size: 28px; font-weight: 900; color: white; line-height: 1; margin-bottom: 4px; }
-.adm-stat-val.green { color: #4ade80; }
-.adm-stat-val.gold  { color: #f5d9a8; }
-.adm-stat-val.blue  { color: #93c5fd; }
-.adm-stat-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #3a5030; }
-
-/* Filters */
-.adm-filters {
-  background: #161c12;
-  border: 1px solid #2a3322;
-  border-radius: 14px;
-  padding: 14px 18px;
-  margin-bottom: 18px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-.adm-search {
-  flex: 1;
-  min-width: 200px;
-  padding: 9px 14px;
-  background: #0d1109;
-  border: 1px solid #2a3322;
-  border-radius: 8px;
-  color: white;
-  font-family: var(--font-body);
-  font-size: 13px;
-  outline: none;
-}
-.adm-search::placeholder { color: #3a5030; }
-.adm-search:focus { border-color: #4ade80; }
-.adm-select {
-  padding: 9px 14px;
-  background: #0d1109;
-  border: 1px solid #2a3322;
-  border-radius: 8px;
-  color: #ccc;
-  font-family: var(--font-body);
-  font-size: 13px;
-  outline: none;
-  cursor: pointer;
-}
-.adm-select:focus { border-color: #4ade80; }
-.adm-refresh {
-  padding: 9px 16px;
-  background: #2a3322;
-  border: none;
-  border-radius: 8px;
-  color: #ccc;
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.adm-refresh:hover { background: #3a4a30; }
-
-/* Table */
-.adm-table-wrap {
-  background: #161c12;
-  border: 1px solid #2a3322;
-  border-radius: 14px;
-  overflow: hidden;
-}
-.adm-table-head {
-  padding: 14px 20px;
-  border-bottom: 1px solid #2a3322;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.adm-table-title { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: white; }
-.adm-count { background: #2a3322; color: #5a6e50; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
-table.adm-table { width: 100%; border-collapse: collapse; }
-table.adm-table thead tr { background: #0d1109; }
-table.adm-table thead th {
-  padding: 11px 14px;
-  text-align: left;
-  font-size: 9.5px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: #3a5030;
-  border-bottom: 1px solid #2a3322;
-  white-space: nowrap;
-}
-table.adm-table tbody tr {
-  border-bottom: 1px solid #1a2215;
-  transition: background 0.15s;
-  cursor: pointer;
-}
-table.adm-table tbody tr:hover { background: #1e2a18; }
-table.adm-table tbody tr:last-child { border-bottom: none; }
-table.adm-table tbody td { padding: 12px 14px; font-size: 13px; color: #aaa; }
-.td-name { font-weight: 700; color: white; }
-.td-muted { color: #5a6e50; font-size: 12px; }
-
-/* Interest badge */
-.int-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 800;
-  white-space: nowrap;
-}
-.int-badge.yes     { background: rgba(74,222,128,0.12); color: #4ade80; }
-.int-badge.maybe   { background: rgba(245,217,168,0.12); color: #f5d9a8; }
-.int-badge.no      { background: rgba(248,113,113,0.12); color: #f87171; }
-
-/* Rating pill */
-.rating-pip {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  font-size: 12px;
-  font-weight: 800;
-  color: #8dd9a8;
-}
-
-/* Drawer */
-.adm-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.65);
-  z-index: 1000;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s;
-}
-.adm-overlay.open { opacity: 1; pointer-events: all; }
-.adm-drawer {
-  position: fixed;
-  top: 0; right: -580px;
-  width: 540px;
-  max-width: 95vw;
-  height: 100vh;
-  background: #161c12;
-  border-left: 1px solid #2a3322;
-  z-index: 1001;
-  transition: right 0.35s cubic-bezier(.4,0,.2,1);
-  overflow-y: auto;
-}
-.adm-drawer.open { right: 0; }
-.adm-drawer-header {
-  position: sticky;
-  top: 0;
-  background: #161c12;
-  border-bottom: 1px solid #2a3322;
-  padding: 17px 22px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 2;
-}
-.adm-drawer-title { font-size: 15px; font-weight: 800; color: white; }
-.adm-drawer-close {
-  width: 30px; height: 30px;
-  border-radius: 8px;
-  background: #2a3322;
-  border: none;
-  color: #5a6e50;
-  font-size: 17px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
-}
-.adm-drawer-close:hover { background: #3a4a30; color: white; }
-.adm-drawer-body { padding: 22px; }
-.drw-section { margin-bottom: 22px; }
-.drw-section-title {
-  font-size: 9.5px;
-  font-weight: 800;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: #3a5030;
-  margin-bottom: 10px;
-  padding-bottom: 7px;
-  border-bottom: 1px solid #2a3322;
-}
-.drw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.drw-field dt { font-size: 9.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #3a5030; margin-bottom: 3px; }
-.drw-field dd { font-size: 13px; font-weight: 600; color: #aaa; }
-.drw-field dd.white { color: white; }
-.score-block {
-  background: #0d1109;
-  border: 1px solid #2a3322;
-  border-radius: 12px;
-  padding: 14px;
-  text-align: center;
-  margin-bottom: 14px;
-}
-.score-block-val { font-size: 40px; font-weight: 900; color: #8dd9a8; line-height: 1; margin-bottom: 4px; }
-.score-block-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #3a5030; }
-
-.adm-empty { text-align: center; padding: 60px 20px; color: #3a5030; }
-.adm-empty-icon { font-size: 40px; margin-bottom: 12px; }
-.adm-loading { text-align: center; padding: 60px 20px; color: #3a5030; }
-.adm-spin { width: 30px; height: 30px; border: 3px solid #2a3322; border-top-color: #4ade80; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 12px; }
-
-.chip {
-  display: inline-block;
-  background: #2a3322;
-  color: #8dd9a8;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 3px 9px;
-  border-radius: 20px;
-  margin: 2px;
-}
-
-@media(max-width:700px) {
-  .adm-stats { grid-template-columns: 1fr 1fr; }
-  .adm-body  { padding: 16px; }
-  .site-header { padding: 0 16px; }
-}
-@media(max-width:500px) { .cmp-grid { grid-template-columns: 1fr !important; } }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; vertical-align: middle; }
+  .glass-card { background: rgba(250,246,238,0.7); backdrop-filter: blur(16px); border: 1px solid rgba(26,92,64,0.1); }
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.active { opacity: 1; transform: translateY(0); }
+  .lighting-overlay { background: radial-gradient(circle at 50% 40%, rgba(200,145,58,0.15) 0%, transparent 60%); }
+  .page { display: none; min-height: 100vh; }
+  .page.active-page { display: block; }
+  #cart-drawer { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+  #cart-drawer.open { transform: translateX(0); }
+  #cart-overlay { opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+  #cart-overlay.open { opacity: 1; pointer-events: all; }
+  #modal-bg { opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+  #modal-bg.open { opacity: 1; pointer-events: all; }
+  #modal-content { transform: scale(0.95) translateY(20px); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); }
+  #modal-bg.open #modal-content { transform: scale(1) translateY(0); }
+  .qty-btn { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:600; cursor:pointer; transition:all 0.2s; }
+  .tag-pill { display:inline-flex; align-items:center; gap:4px; padding:4px 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; }
 </style>
 </head>
-<body>
+<body class="bg-surface font-body text-on-surface overflow-x-hidden" style="font-family:'Inter',sans-serif;">
 
-<div class="toast" id="toast"></div>
-
-<!-- ══════════════════════════════════════
-     PUBLIC SURVEY APP
-══════════════════════════════════════ -->
-<div id="survey-app">
-  <div class="top-bar">🇵🇰 Help shape the future of Pakistani pickles — <em>2 minutes survey</em></div>
-
-  <header class="site-header">
-    <div class="logo">Turşu <span>Pakistan</span></div>
-    <div style="display:flex;align-items:center;gap:10px;">
-      <div class="header-pill">🫙 Survey 2025</div>
-      <span class="admin-link" onclick="openAdmin()">🔒 Admin</span>
+<!-- TOP NAV -->
+<nav class="fixed top-0 w-full z-50 bg-glass-fill backdrop-blur-md border-b border-glass-stroke" style="background:rgba(250,246,238,0.88);">
+  <div class="flex justify-between items-center px-6 md:px-16 py-4 max-w-[1200px] mx-auto">
+    <div class="flex items-center gap-3 cursor-pointer" onclick="showPage('home')">
+      <img alt="Turcu House Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtr86iKTDp6SbIM5IzN2PqAWZzr8yB9LWxtyCNN2o3KpONo-u7izmkAEcTkLlH_2pdIRfWC8V9t9RpVquab0g3VgXVHkG6YzyVYUKubJDcUIU3p-htdkm4RwcsusyGKiTAqt4KZOxrTvktVzKuNzYu8lmlpOHCy_BSPLCXAqbJ4CHk-mSDAWMXvfj4qlrGrz60gaCtsrG42c1-oFQIqWaLFwxXeE45MYtZ_cP8xgdLGuL4mGlszgZ0jqeOyCuSyVIrji3Tn4RL99Q">
+      <span class="font-display text-2xl font-bold text-primary tracking-tight hidden sm:block" style="font-family:'Playfair Display',serif;">Turcu House</span>
     </div>
-  </header>
-
-  <!-- HERO -->
-  <div class="hero">
-    <!-- Animated pickle jar SVG -->
-    <svg class="hero-jar" width="110" height="140" viewBox="0 0 110 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Lid -->
-      <rect x="22" y="8" width="66" height="16" rx="5" fill="#c8913a"/>
-      <rect x="28" y="12" width="54" height="8" rx="3" fill="#e0a84a"/>
-      <!-- Jar body -->
-      <path d="M18 28 Q14 38 14 60 L14 112 Q14 126 28 126 L82 126 Q96 126 96 112 L96 60 Q96 38 92 28 Z" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
-      <!-- Liquid fill -->
-      <clipPath id="jar-clip">
-        <path d="M18 28 Q14 38 14 60 L14 112 Q14 126 28 126 L82 126 Q96 126 96 112 L96 60 Q96 38 92 28 Z"/>
-      </clipPath>
-      <rect x="14" y="55" width="82" height="71" fill="rgba(140,210,170,0.35)" clip-path="url(#jar-clip)"/>
-      <!-- Cucumbers -->
-      <ellipse cx="42" cy="80" rx="12" ry="7" fill="#2a7a4a" opacity="0.9"/>
-      <ellipse cx="70" cy="70" rx="10" ry="6" fill="#1a5c36" opacity="0.85"/>
-      <ellipse cx="52" cy="100" rx="13" ry="7" fill="#2a7a4a" opacity="0.8"/>
-      <ellipse cx="75" cy="97" rx="8" ry="5" fill="#1a5c36" opacity="0.75"/>
-      <!-- Bubbles -->
-      <circle cx="38" cy="58" r="3" fill="rgba(255,255,255,0.2)"/>
-      <circle cx="70" cy="56" r="2" fill="rgba(255,255,255,0.15)"/>
-      <circle cx="55" cy="62" r="2.5" fill="rgba(255,255,255,0.18)"/>
-    </svg>
-
-    <div class="hero-eyebrow">Pakistan's Next Big Food Trend?</div>
-    <div class="hero-title">Turkish <span>Turşu</span> vs<br>Oil-Based Achar</div>
-    <div class="hero-sub">We're exploring whether Pakistan is ready for Turkish-style vinegar-based pickles (turşu). Your honest opinion helps us understand what people want.</div>
-    <div class="hero-meta">
-      <span>⏱ 2 minutes</span>
-      <span>•</span>
-      <span>🔒 Anonymous</span>
-      <span>•</span>
-      <span><span>🇵🇰</span> Pakistan only</span>
+    <div class="hidden md:flex gap-8 items-center">
+      <a class="text-xs font-semibold tracking-widest text-on-surface hover:text-heritage-gold transition-colors cursor-pointer uppercase" onclick="showPage('heritage')">Heritage</a>
+      <a class="text-xs font-semibold tracking-widest text-on-surface hover:text-heritage-gold transition-colors cursor-pointer uppercase" onclick="showPage('shop')">Our Jars</a>
+      <a class="text-xs font-semibold tracking-widest text-on-surface hover:text-heritage-gold transition-colors cursor-pointer uppercase" onclick="showPage('brine')">The Brine</a>
+      <a class="text-xs font-semibold tracking-widest text-on-surface hover:text-heritage-gold transition-colors cursor-pointer uppercase" onclick="showPage('process')">Process</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <button onclick="openCart()" class="relative p-2 rounded-full hover:bg-surface-container transition-colors">
+        <span class="material-symbols-outlined text-primary">shopping_basket</span>
+        <span id="cart-badge" class="absolute -top-1 -right-1 bg-heritage-gold text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
+      </button>
+      <button class="bg-emerald-deep text-white px-5 py-2 rounded-full text-sm font-semibold tracking-wide hover:bg-primary transition-colors shadow-sm" onclick="showPage('shop')">Shop Now</button>
+      <button class="md:hidden p-2" onclick="toggleMobileMenu()">
+        <span class="material-symbols-outlined text-primary">menu</span>
+      </button>
     </div>
   </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-brine-cream border-t border-glass-stroke px-6 py-4 space-y-3">
+    <a class="block text-xs font-semibold tracking-widest uppercase text-on-surface hover:text-heritage-gold py-2 cursor-pointer" onclick="showPage('heritage');toggleMobileMenu()">Heritage</a>
+    <a class="block text-xs font-semibold tracking-widest uppercase text-on-surface hover:text-heritage-gold py-2 cursor-pointer" onclick="showPage('shop');toggleMobileMenu()">Our Jars</a>
+    <a class="block text-xs font-semibold tracking-widest uppercase text-on-surface hover:text-heritage-gold py-2 cursor-pointer" onclick="showPage('brine');toggleMobileMenu()">The Brine</a>
+    <a class="block text-xs font-semibold tracking-widest uppercase text-on-surface hover:text-heritage-gold py-2 cursor-pointer" onclick="showPage('process');toggleMobileMenu()">Process</a>
+  </div>
+</nav>
 
-  <div class="main">
-    <!-- PROGRESS -->
-    <div class="progress-wrap">
-      <div class="progress-label">Progress</div>
-      <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill" style="width:5%"></div></div>
-      <div class="progress-pct" id="progress-pct">Step 1/4</div>
+<!-- CART DRAWER -->
+<div id="cart-overlay" class="fixed inset-0 bg-black/40 z-[60]" onclick="closeCart()"></div>
+<div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-surface z-[70] flex flex-col shadow-2xl">
+  <div class="flex justify-between items-center px-6 py-5 border-b border-outline-variant">
+    <h2 class="font-display text-xl font-bold text-primary" style="font-family:'Playfair Display',serif;">Your Basket</h2>
+    <button onclick="closeCart()" class="p-2 rounded-full hover:bg-surface-container transition-colors">
+      <span class="material-symbols-outlined text-on-surface">close</span>
+    </button>
+  </div>
+  <div id="cart-items" class="flex-1 overflow-y-auto px-6 py-4 space-y-4"></div>
+  <div id="cart-empty" class="flex-1 flex flex-col items-center justify-center text-center px-6 py-12 hidden">
+    <span class="material-symbols-outlined text-5xl text-outline-variant mb-4">shopping_basket</span>
+    <p class="text-on-surface-variant font-medium">Your basket is empty</p>
+    <button onclick="closeCart();showPage('shop')" class="mt-4 text-sm font-semibold text-heritage-gold hover:underline">Browse the jars →</button>
+  </div>
+  <div id="cart-footer" class="border-t border-outline-variant px-6 py-5 space-y-4 hidden">
+    <div class="flex justify-between text-sm text-on-surface-variant">
+      <span>Subtotal</span>
+      <span id="cart-subtotal" class="font-semibold text-on-surface"></span>
     </div>
-
-    <!-- ── STAGE 0: About You ── -->
-    <div class="stage active" id="stage-0">
-      <div class="card">
-        <div class="card-header">
-          <div class="card-icon">👤</div>
-          <div>
-            <div class="card-title">A Bit About You</div>
-            <div class="card-sub">Quick background — helps us segment responses</div>
+    <p class="text-xs text-on-surface-variant">Shipping &amp; final price confirmed via WhatsApp</p>
+    <button onclick="closeCart();showPage('checkout')" class="group w-full relative overflow-hidden rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5" style="background:linear-gradient(135deg,#00442b 0%,#1a5c40 50%,#00442b 100%);">
+      <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background:linear-gradient(135deg,#1a5c40 0%,#2d7a57 50%,#1a5c40 100%);"></div>
+      <div class="relative flex items-center justify-between px-5 py-4">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(255,255,255,0.15);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.112 1.523 5.845L.057 23.427a.5.5 0 0 0 .609.61l5.692-1.447A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.006-1.374l-.36-.214-3.722.946.992-3.624-.235-.373A9.808 9.808 0 0 1 2.182 12C2.182 6.575 6.575 2.182 12 2.182S21.818 6.575 21.818 12 17.425 21.818 12 21.818z"/></svg>
+          </div>
+          <div class="text-left">
+            <div class="text-white font-bold text-sm tracking-wide">Proceed to Checkout</div>
+            <div class="text-white/60 text-[10px] tracking-wider uppercase mt-0.5">Confirm via WhatsApp</div>
           </div>
         </div>
-        <div class="card-body">
-          <div class="field-grid two">
-            <div class="field" id="f-name">
-              <label>Your Name <span class="req">*</span></label>
-              <input type="text" id="inp-name" placeholder="Muhammad Ali / Sana Raza">
-              <span class="err-msg">Name is required</span>
-            </div>
-            <div class="field" id="f-phone">
-              <label>WhatsApp Number <span class="req">*</span></label>
-              <input type="tel" id="inp-phone" placeholder="0300-1234567" maxlength="14">
-              <span class="err-msg">Enter a valid Pakistani number</span>
-            </div>
-            <div class="field" id="f-city">
-              <label>City <span class="req">*</span></label>
-              <select id="inp-city">
-                <option value="">Select your city</option>
-                <option>Karachi</option>
-                <option>Lahore</option>
-                <option>Islamabad / Rawalpindi</option>
-                <option>Multan</option>
-                <option>Faisalabad</option>
-                <option>Peshawar</option>
-                <option>Quetta</option>
-                <option>Hyderabad</option>
-                <option>Other</option>
-              </select>
-              <span class="err-msg">Select your city</span>
-            </div>
-            <div class="field" id="f-age">
-              <label>Age Group <span class="req">*</span></label>
-              <select id="inp-age">
-                <option value="">Select age group</option>
-                <option>Under 18</option>
-                <option>18–24</option>
-                <option>25–34</option>
-                <option>35–44</option>
-                <option>45–54</option>
-                <option>55+</option>
-              </select>
-              <span class="err-msg">Select age group</span>
-            </div>
-          </div>
-
-          <div class="section-divider"><span class="section-divider-text">Your Food Habits</span></div>
-
-          <div class="field-grid">
-            <div class="field">
-              <label>How often do you eat pickles / achar?</label>
-              <div class="pill-group" id="pickle-freq">
-                <label class="pill"><input type="radio" name="freq" value="Daily"> 🥒 Daily</label>
-                <label class="pill"><input type="radio" name="freq" value="Few times a week"> Several times/week</label>
-                <label class="pill"><input type="radio" name="freq" value="Few times a month"> A few times/month</label>
-                <label class="pill"><input type="radio" name="freq" value="Rarely"> Rarely</label>
-                <label class="pill"><input type="radio" name="freq" value="Never"> Never</label>
-              </div>
-            </div>
-            <div class="field">
-              <label>Which types of achar do you regularly eat? <small style="font-size:10px;color:var(--muted);text-transform:none;">(select all)</small></label>
-              <div class="pill-group">
-                <label class="pill"><input type="checkbox" name="achar-type" value="Mango Achar (Aam)"> Mango (Aam)</label>
-                <label class="pill"><input type="checkbox" name="achar-type" value="Mixed Vegetable Achar"> Mixed Vegetable</label>
-                <label class="pill"><input type="checkbox" name="achar-type" value="Chili Achar"> Chili</label>
-                <label class="pill"><input type="checkbox" name="achar-type" value="Lemon Achar"> Lemon</label>
-                <label class="pill"><input type="checkbox" name="achar-type" value="Garlic Achar"> Garlic</label>
-                <label class="pill"><input type="checkbox" name="achar-type" value="Carrot/Turnip Achar"> Carrot/Turnip</label>
-                <label class="pill"><input type="checkbox" name="achar-type" value="I don't eat achar"> I don't eat achar</label>
-              </div>
-            </div>
-            <div class="field">
-              <label>Where do you usually get your achar?</label>
-              <div class="pill-group">
-                <label class="pill"><input type="radio" name="achar-src" value="Homemade"> 🏠 Homemade</label>
-                <label class="pill"><input type="radio" name="achar-src" value="Local market / dukan"> 🛒 Local market</label>
-                <label class="pill"><input type="radio" name="achar-src" value="Branded (National, Shan etc.)"> 📦 Branded (National, Shan)</label>
-                <label class="pill"><input type="radio" name="achar-src" value="Restaurant / dhaba"> 🍽️ Restaurant/dhaba</label>
-                <label class="pill"><input type="radio" name="achar-src" value="Don't eat achar"> N/A</label>
-              </div>
-            </div>
-          </div>
-        </div>
+        <span class="material-symbols-outlined text-white/80 group-hover:translate-x-1 transition-transform text-xl">arrow_forward</span>
       </div>
-      <button class="btn-primary" onclick="goStage(1)">Next →</button>
-    </div>
-
-    <!-- ── STAGE 1: Awareness & Taste ── -->
-    <div class="stage" id="stage-1">
-      <div class="info-box info-box-gold" style="flex-direction:column;gap:14px;">
-  <div style="display:flex;align-items:center;gap:10px;">
-    <span style="font-size:22px;">🫙</span>
-    <strong style="font-size:14px;color:#6b4a10;">What is Turkish Turşu — and why is it different?</strong>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;" class="cmp-grid">
-    <div style="background:rgba(200,145,58,0.08);border-radius:10px;padding:12px;">
-      <div style="font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#9c6e27;margin-bottom:8px;">🛢️ Pakistani Oil Achar</div>
-      <ul style="font-size:12px;color:#6b4a10;line-height:1.9;padding-left:14px;">
-        <li>Preserved in <strong>mustard oil</strong></li>
-        <li>Heavy masala & spices</li>
-        <li>High calorie, oily texture</li>
-        <li>Stains hands & clothes</li>
-        <li>Can feel heavy on stomach</li>
-        <li>Sometimes has artificial color</li>
-      </ul>
-    </div>
-    <div style="background:rgba(26,92,64,0.08);border-radius:10px;padding:12px;">
-      <div style="font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#1a5c40;margin-bottom:8px;">🥒 Turkish Turşu</div>
-      <ul style="font-size:12px;color:#1a5c40;line-height:1.9;padding-left:14px;">
-        <li>Preserved in <strong>vinegar & brine</strong></li>
-        <li>Clean, tangy, crunchy taste</li>
-        <li>Zero oil — much lighter</li>
-        <li>No staining at all</li>
-        <li>Easy on digestion</li>
-        <li>Natural — no artificial additives</li>
-      </ul>
-    </div>
-  </div>
-  <div style="font-size:12px;color:#6b4a10;background:rgba(200,145,58,0.1);border-radius:8px;padding:10px 12px;line-height:1.7;">
-    💡 <strong>Fun fact:</strong> In Turkey, people drink the pickle juice (turşu suyu) as a health tonic after meals. It's rich in natural probiotics — similar to how our elders used to drink lassi for digestion!
-  </div>
-</div>
-      <div class="card">
-        <div class="card-header">
-          <div class="card-icon">🌍</div>
-          <div>
-            <div class="card-title">Awareness & Taste Preferences</div>
-            <div class="card-sub">Have you tried anything like this before?</div>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="field-grid">
-            <div class="field">
-              <label>Have you ever heard of or tried Turkish-style turşu (vinegar pickles)?</label>
-              <div class="pill-group">
-                <label class="pill pill-gold"><input type="radio" name="tursu-heard" value="Yes, I've tried it and liked it"> ✅ Tried & loved it</label>
-                <label class="pill pill-gold"><input type="radio" name="tursu-heard" value="Yes, I've tried it but didn't like it"> 🤔 Tried, didn't like</label>
-                <label class="pill pill-gold"><input type="radio" name="tursu-heard" value="Heard of it but never tried"> 👂 Heard of it only</label>
-                <label class="pill pill-gold"><input type="radio" name="tursu-heard" value="No, first time hearing about this"> ❓ Never heard of it</label>
-              </div>
-            </div>
-
-            <div class="field">
-              <label>When you think of pickles, what taste do you prefer most?</label>
-              <div class="pill-group">
-                <label class="pill"><input type="radio" name="taste-pref" value="Oily & spicy (traditional Pakistani achar)"> 🌶️ Oily & spicy</label>
-                <label class="pill"><input type="radio" name="taste-pref" value="Tangy & sour (vinegar-based)"> 🍋 Tangy & sour</label>
-                <label class="pill"><input type="radio" name="taste-pref" value="Mild & crunchy"> 🥒 Mild & crunchy</label>
-                <label class="pill"><input type="radio" name="taste-pref" value="Sweet & sour"> 🍬 Sweet & sour</label>
-                <label class="pill"><input type="radio" name="taste-pref" value="No preference"> No preference</label>
-              </div>
-            </div>
-
-            <div class="field">
-              <label>Which vegetables would you most like to see in a Pakistani turşu?</label>
-              <div class="pill-group">
-                <label class="pill"><input type="checkbox" name="veg-pref" value="Cucumber (Kheera)"> 🥒 Cucumber</label>
-                <label class="pill"><input type="checkbox" name="veg-pref" value="Carrot (Gajar)"> 🥕 Carrot</label>
-                <label class="pill"><input type="checkbox" name="veg-pref" value="Cabbage (Band Gobi)"> 🥬 Cabbage</label>
-                <label class="pill"><input type="checkbox" name="veg-pref" value="Green Chili (Hari Mirch)"> 🌶️ Green Chili</label>
-                <label class="pill"><input type="checkbox" name="veg-pref" value="Garlic (Lehsun)"> 🧄 Garlic</label>
-                <label class="pill"><input type="checkbox" name="veg-pref" value="Turnip (Shalgam)"> Turnip (Shalgam)</label>
-                <label class="pill"><input type="checkbox" name="veg-pref" value="Bell Pepper (Shimla Mirch)"> 🫑 Bell Pepper</label>
-              </div>
-            </div>
-
-            <div class="field">
-              <label>Compared to oil-based achar, vinegar pickles are <strong>oil-free & lighter</strong>. How does that sound to you?</label>
-              <div class="pill-group">
-                <label class="pill"><input type="radio" name="oilfree-reaction" value="Love it — I prefer healthier options"> ❤️ Love it — healthier!</label>
-                <label class="pill"><input type="radio" name="oilfree-reaction" value="Interesting — might try it"> 🤔 Interesting, might try</label>
-                <label class="pill"><input type="radio" name="oilfree-reaction" value="Neutral — taste matters more than oil"> 😐 Neutral — taste matters more</label>
-                <label class="pill"><input type="radio" name="oilfree-reaction" value="Don't like it — I prefer oily achar"> 👎 I prefer oily achar</label>
-              </div>
-            </div>
-            <div class="field">
-  <label>Did you know vinegar pickles are used as a <strong>digestive aid & probiotic</strong> in Turkey & Europe?</label>
-  <div class="pill-group">
-    <label class="pill"><input type="radio" name="health-know" value="Yes, I knew this"> ✅ Yes, knew this</label>
-    <label class="pill"><input type="radio" name="health-know" value="No, interesting!"> 💡 No, interesting!</label>
-    <label class="pill"><input type="radio" name="health-know" value="Not sure if I believe it"> 🤔 Skeptical</label>
+    </button>
   </div>
 </div>
 
-<div class="field">
-  <label>Which benefit of turşu appeals to you most?</label>
-  <div class="pill-group">
-    <label class="pill"><input type="checkbox" name="benefits" value="No oil = fewer calories"> 🔥 No oil = fewer calories</label>
-    <label class="pill"><input type="checkbox" name="benefits" value="Gut health / probiotics"> 🦠 Gut health & digestion</label>
-    <label class="pill"><input type="checkbox" name="benefits" value="No artificial preservatives needed"> 🌿 Natural preservation</label>
-    <label class="pill"><input type="checkbox" name="benefits" value="Crunchy texture stays fresh longer"> 🥒 Stays crunchy longer</label>
-    <label class="pill"><input type="checkbox" name="benefits" value="Lighter on stomach than oily achar"> 💚 Lighter on stomach</label>
-    <label class="pill"><input type="checkbox" name="benefits" value="None of these appeal to me"> ❌ None appeal to me</label>
+<!-- PRODUCT MODAL -->
+<div id="modal-bg" class="fixed inset-0 bg-black/50 z-[80] flex items-center justify-center p-4" onclick="closeModal(event)">
+  <div id="modal-content" class="bg-surface rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl" onclick="event.stopPropagation()">
+    <div class="relative">
+      <img id="modal-img" class="w-full h-72 object-cover rounded-t-2xl" src="" alt="">
+      <button onclick="closeModal()" class="absolute top-4 right-4 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow hover:bg-white transition-colors">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="p-8 space-y-6">
+      <div>
+        <span id="modal-tag" class="tag-pill bg-heritage-gold/10 text-heritage-gold mb-3"></span>
+        <h2 id="modal-name" class="font-display text-3xl font-bold text-primary mt-2" style="font-family:'Playfair Display',serif;"></h2>
+        <p id="modal-desc" class="text-on-surface-variant mt-3 leading-relaxed"></p>
+      </div>
+      <div class="space-y-3">
+        <div class="text-xs uppercase tracking-widest text-outline font-semibold">Choose Size</div>
+        <div class="grid grid-cols-2 gap-3">
+          <button id="size-500" onclick="selectSize('500ml')" class="size-btn relative rounded-xl border-2 p-4 text-left transition-all duration-200 border-primary bg-primary/5">
+            <div class="text-xs font-bold tracking-widest text-primary uppercase mb-1">500 ml</div>
+            <div id="price-500" class="text-xl font-bold text-primary" style="font-family:'Playfair Display',serif;">PKR 695</div>
+            <div class="text-[10px] text-on-surface-variant mt-0.5">Standard jar · Perfect for trying</div>
+            <div class="absolute top-3 right-3 w-5 h-5 rounded-full bg-primary flex items-center justify-center" id="check-500">
+              <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </button>
+          <button id="size-1000" onclick="selectSize('1000ml')" class="size-btn relative rounded-xl border-2 p-4 text-left transition-all duration-200 border-outline-variant bg-surface-container-low hover:border-primary/40">
+            <div class="absolute -top-2 -right-2 bg-heritage-gold text-white text-[9px] font-bold px-2 py-0.5 rounded-full tracking-wider">BEST VALUE</div>
+            <div class="text-xs font-bold tracking-widest text-on-surface-variant uppercase mb-1">1000 ml</div>
+            <div id="price-1000" class="text-xl font-bold text-on-surface" style="font-family:'Playfair Display',serif;">PKR 1,195</div>
+            <div class="text-[10px] text-on-surface-variant mt-0.5">Family jar · More to love</div>
+            <div class="absolute top-3 right-3 w-5 h-5 rounded-full bg-outline-variant items-center justify-center hidden" id="check-1000">
+              <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4 py-4 border-y border-outline-variant">
+        <div class="text-center"><div class="text-xs uppercase tracking-widest text-outline font-semibold mb-1">Brine</div><div class="font-semibold text-on-surface">Vinegar</div></div>
+        <div class="text-center"><div class="text-xs uppercase tracking-widest text-outline font-semibold mb-1">Oil-Free</div><div class="font-semibold text-heritage-gold">✓ Yes</div></div>
+      </div>
+      <div class="space-y-2">
+        <div class="text-xs uppercase tracking-widest text-outline font-semibold">Health Benefits</div>
+        <div id="modal-benefits" class="flex flex-wrap gap-2"></div>
+      </div>
+      <div class="flex items-center justify-between">
+        <div>
+          <span class="text-3xl font-bold text-primary" id="modal-price">PKR 695</span>
+          <span class="text-on-surface-variant text-sm ml-1">per jar</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <button class="qty-btn bg-surface-container border border-outline-variant text-on-surface hover:bg-surface-container-high" onclick="changeModalQty(-1)">−</button>
+          <span id="modal-qty" class="w-8 text-center font-semibold">1</span>
+          <button class="qty-btn bg-surface-container border border-outline-variant text-on-surface hover:bg-surface-container-high" onclick="changeModalQty(1)">+</button>
+        </div>
+      </div>
+      <button id="modal-add-btn" onclick="addToCartFromModal()" class="w-full bg-emerald-deep text-white py-4 rounded-xl font-semibold text-sm tracking-wide hover:bg-primary transition-colors shadow-md flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined">add_shopping_cart</span>
+        Add to Basket
+      </button>
+    </div>
   </div>
 </div>
 
-<div class="field">
-  <label>What do you dislike most about regular oil-based achar?</label>
-  <div class="pill-group">
-    <label class="pill"><input type="checkbox" name="achar-dislikes" value="Too oily / greasy"> 🛢️ Too oily/greasy</label>
-    <label class="pill"><input type="checkbox" name="achar-dislikes" value="Stains clothes and hands"> 👕 Stains clothes</label>
-    <label class="pill"><input type="checkbox" name="achar-dislikes" value="Heavy on stomach"> 🤢 Heavy on stomach</label>
-    <label class="pill"><input type="checkbox" name="achar-dislikes" value="Too spicy / burns"> 🌶️ Too spicy/burns</label>
-    <label class="pill"><input type="checkbox" name="achar-dislikes" value="Artificial color and preservatives"> 🧪 Artificial additives</label>
-    <label class="pill"><input type="checkbox" name="achar-dislikes" value="Short shelf life once opened"> ⏰ Goes bad quickly</label>
-    <label class="pill"><input type="checkbox" name="achar-dislikes" value="Nothing — I love oily achar"> ❤️ Nothing, I love it!</label>
-  </div>
-</div>
-
-<div class="field">
-  <label>Turşu is commonly eaten with <strong>rice, grilled meat, sandwiches & snacks</strong>. Which Pakistani meals do you think it would suit?</label>
-  <div class="pill-group">
-    <label class="pill"><input type="checkbox" name="meal-pair" value="Biryani / Pulao"> 🍚 Biryani/Pulao</label>
-    <label class="pill"><input type="checkbox" name="meal-pair" value="Roti & daal / sabzi"> 🫓 Roti & daal</label>
-    <label class="pill"><input type="checkbox" name="meal-pair" value="BBQ / seekh kabab"> 🍢 BBQ & kabab</label>
-    <label class="pill"><input type="checkbox" name="meal-pair" value="Sandwiches & burgers"> 🥪 Sandwiches</label>
-    <label class="pill"><input type="checkbox" name="meal-pair" value="As a snack on its own"> 🥒 Snack on its own</label>
-    <label class="pill"><input type="checkbox" name="meal-pair" value="Wouldn't pair with any Pakistani food"> ❌ Doesn't fit our food</label>
-  </div>
-</div>
+<!-- PAGE: HOME -->
+<div id="page-home" class="page active-page">
+  <section class="relative min-h-screen flex items-center pt-24 overflow-hidden">
+    <div class="absolute top-20 -left-20 w-96 h-96 bg-primary opacity-5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-20 -right-20 w-[500px] h-[500px] bg-heritage-gold opacity-5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="px-6 md:px-16 max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full relative z-10 py-16">
+      <div class="space-y-6">
+        <span class="text-xs font-semibold tracking-[0.2em] text-heritage-gold uppercase">Cultural Bridges · Artisanal Small-Batch</span>
+        <h1 class="font-display text-4xl md:text-6xl font-bold text-primary leading-tight" style="font-family:'Playfair Display',serif;">
+          The Future of Crunch is <span class="text-heritage-gold">Oil-Free.</span>
+        </h1>
+        <p class="text-lg text-on-surface-variant max-w-lg leading-relaxed">
+          Ancient Turkish preservation meets the vibrant spirit of Pakistan. Experience a probiotic-rich, gut-healthy alternative that elevates every meal without the heavy residue.
+        </p>
+        <div class="flex flex-wrap gap-4 pt-4">
+          <button onclick="showPage('shop')" class="bg-heritage-gold text-white px-8 py-4 rounded-xl font-semibold text-sm flex items-center gap-2 hover:brightness-110 transition-all shadow-md">
+            Explore the Collection
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </button>
+          <button onclick="showPage('heritage')" class="glass-card px-8 py-4 rounded-xl font-semibold text-sm text-primary border border-primary/20 hover:bg-white/60 transition-all">
+            Our Story
+          </button>
+        </div>
+        <div class="flex gap-6 pt-2">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-heritage-gold text-lg" style="font-variation-settings:'FILL' 1;">eco</span>
+            <span class="text-xs font-semibold tracking-wider text-on-surface-variant uppercase">100% Oil-Free</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-heritage-gold text-lg" style="font-variation-settings:'FILL' 1;">health_and_safety</span>
+            <span class="text-xs font-semibold tracking-wider text-on-surface-variant uppercase">Probiotic Rich</span>
           </div>
         </div>
       </div>
-      <div class="btn-row">
-        <button class="btn-back" onclick="goStage(0)">← Back</button>
-        <button class="btn-primary" onclick="goStage(2)">Next →</button>
+      <div class="relative h-[500px] w-full flex items-center justify-center">
+        <img alt="Turcu House Signature Jars" class="w-full h-auto max-w-xl object-contain drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBL05I8GX74iEuNMe7t1kwEpLhBrUuqPUqDIjiAtUOFGYZQzSdC3YqUvLLYa_66vTEnhnF0PoXcnJBVrfC1CTJurPKCmyhxIiapOCfz904r6gokSdsdMKLBxcc9d-HA7M_LjKzjiGJBu7cW0Gh8lOrK_t8Oumt1tbXQmp94Zeyv5YoBH3vDBsrGYJakLC1w56lpDIwCa-iYk5mwVbKYvby0cHCwTyZSGEjexVpX6HURa0uo1X0iI6Xbi1D-hzVzEGyUD4YA0pisca4">
       </div>
     </div>
+  </section>
 
-    <!-- ── STAGE 2: Product Interest ── -->
-    <div class="stage" id="stage-2">
-      <div class="card">
-        <div class="card-header">
-          <div class="card-icon">💡</div>
-          <div>
-            <div class="card-title">Product Interest & Buying Behaviour</div>
-            <div class="card-sub">If we launched this in Pakistan, would you buy it?</div>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="field-grid">
-
-            <div class="field" id="f-try-it">
-              <label>Would you like to <strong>try</strong> Turkish turşu if it was available in Pakistan? <span class="req">*</span></label>
-              <div class="pill-group">
-                <label class="pill pill-gold"><input type="radio" name="would-try" value="Yes, definitely!"> ✅ Yes, definitely!</label>
-                <label class="pill pill-gold"><input type="radio" name="would-try" value="Probably yes"> 🙂 Probably yes</label>
-                <label class="pill pill-gold"><input type="radio" name="would-try" value="Maybe, not sure"> 🤷 Maybe, not sure</label>
-                <label class="pill pill-gold"><input type="radio" name="would-try" value="Probably not"> 🙁 Probably not</label>
-                <label class="pill pill-gold"><input type="radio" name="would-try" value="No, not interested"> ❌ No</label>
-              </div>
-              <span class="err-msg" id="try-err">Please select an option</span>
-            </div>
-
-            <div class="field">
-              <label>How likely are you to <strong>regularly buy</strong> it if the taste is good?</label>
-              <div class="scale-wrap" id="scale-buy">
-                <button type="button" class="scale-btn" onclick="setScale('buy',1)">1</button>
-                <button type="button" class="scale-btn" onclick="setScale('buy',2)">2</button>
-                <button type="button" class="scale-btn" onclick="setScale('buy',3)">3</button>
-                <button type="button" class="scale-btn" onclick="setScale('buy',4)">4</button>
-                <button type="button" class="scale-btn" onclick="setScale('buy',5)">5</button>
-                <button type="button" class="scale-btn" onclick="setScale('buy',6)">6</button>
-                <button type="button" class="scale-btn" onclick="setScale('buy',7)">7</button>
-                <button type="button" class="scale-btn" onclick="setScale('buy',8)">8</button>
-                <button type="button" class="scale-btn" onclick="setScale('buy',9)">9</button>
-                <button type="button" class="scale-btn" onclick="setScale('buy',10)">10</button>
-              </div>
-              <div class="scale-labels"><span>Not at all</span><span>Absolutely!</span></div>
-            </div>
-
-            <div class="field">
-              <label>Where would you prefer to buy it?</label>
-              <div class="pill-group">
-                <label class="pill"><input type="checkbox" name="buy-where" value="Online (Daraz, WhatsApp shop)"> 📱 Online / Daraz</label>
-                <label class="pill"><input type="checkbox" name="buy-where" value="Supermarket (Imtiaz, Metro, Carrefour)"> 🏪 Supermarket</label>
-                <label class="pill"><input type="checkbox" name="buy-where" value="Local grocery / kiryana store"> 🛒 Local kiryana</label>
-                <label class="pill"><input type="checkbox" name="buy-where" value="Specialty food stores"> 🍴 Specialty stores</label>
-                <label class="pill"><input type="checkbox" name="buy-where" value="Restaurants / delivery services"> 🍽️ Restaurants</label>
-              </div>
-            </div>
-
-            <div class="field">
-              <label>What price range would feel <strong>fair</strong> for a 500g jar?</label>
-              <div class="pill-group">
-                <label class="pill"><input type="radio" name="price-range" value="Under Rs 200"> Under Rs 200</label>
-                <label class="pill"><input type="radio" name="price-range" value="Rs 200 – 350"> Rs 200–350</label>
-                <label class="pill"><input type="radio" name="price-range" value="Rs 350 – 500"> Rs 350–500</label>
-                <label class="pill"><input type="radio" name="price-range" value="Rs 500 – 700"> Rs 500–700</label>
-                <label class="pill"><input type="radio" name="price-range" value="Rs 700+"> Rs 700+</label>
-                <label class="pill"><input type="radio" name="price-range" value="Depends on quality"> Depends on quality</label>
-              </div>
-            </div>
-
-            <div class="field">
-              <label>How important are these factors? (Rate each 1–5)</label>
-              <div style="display:flex;flex-direction:column;gap:12px;margin-top:4px;">
-                <div>
-                  <div style="font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;">No artificial preservatives / chemicals</div>
-                  <div class="scale-wrap" id="scale-nat">
-                    <button type="button" class="scale-btn" onclick="setScale('nat',1)">1</button>
-                    <button type="button" class="scale-btn" onclick="setScale('nat',2)">2</button>
-                    <button type="button" class="scale-btn" onclick="setScale('nat',3)">3</button>
-                    <button type="button" class="scale-btn" onclick="setScale('nat',4)">4</button>
-                    <button type="button" class="scale-btn" onclick="setScale('nat',5)">5</button>
-                  </div>
-                </div>
-                <div>
-                  <div style="font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;">Long shelf life (12+ months)</div>
-                  <div class="scale-wrap" id="scale-shelf">
-                    <button type="button" class="scale-btn" onclick="setScale('shelf',1)">1</button>
-                    <button type="button" class="scale-btn" onclick="setScale('shelf',2)">2</button>
-                    <button type="button" class="scale-btn" onclick="setScale('shelf',3)">3</button>
-                    <button type="button" class="scale-btn" onclick="setScale('shelf',4)">4</button>
-                    <button type="button" class="scale-btn" onclick="setScale('shelf',5)">5</button>
-                  </div>
-                </div>
-                <div>
-                  <div style="font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;">Made locally in Pakistan (local ingredients)</div>
-                  <div class="scale-wrap" id="scale-local">
-                    <button type="button" class="scale-btn" onclick="setScale('local',1)">1</button>
-                    <button type="button" class="scale-btn" onclick="setScale('local',2)">2</button>
-                    <button type="button" class="scale-btn" onclick="setScale('local',3)">3</button>
-                    <button type="button" class="scale-btn" onclick="setScale('local',4)">4</button>
-                    <button type="button" class="scale-btn" onclick="setScale('local',5)">5</button>
-                  </div>
-                </div>
-                <div>
-                  <div style="font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;">Halal certified</div>
-                  <div class="scale-wrap" id="scale-halal">
-                    <button type="button" class="scale-btn" onclick="setScale('halal',1)">1</button>
-                    <button type="button" class="scale-btn" onclick="setScale('halal',2)">2</button>
-                    <button type="button" class="scale-btn" onclick="setScale('halal',3)">3</button>
-                    <button type="button" class="scale-btn" onclick="setScale('halal',4)">4</button>
-                    <button type="button" class="scale-btn" onclick="setScale('halal',5)">5</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
+  <section class="py-24 bg-surface-container-low">
+    <div class="px-6 md:px-16 max-w-[1200px] mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl font-bold text-primary mb-4" style="font-family:'Playfair Display',serif;">Turcu vs. Achar</h2>
+        <p class="text-on-surface-variant max-w-xl mx-auto">A side-by-side look at why vinegar-based brines are the lighter, more refreshing choice for the modern Pakistani pantry.</p>
       </div>
-      <div class="btn-row">
-        <button class="btn-back" onclick="goStage(1)">← Back</button>
-        <button class="btn-primary" onclick="goStage(3)">Next →</button>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+        <div class="bg-surface-variant/30 p-8 rounded-xl border border-outline-variant">
+          <div class="flex justify-between items-start mb-8">
+            <h3 class="font-display text-2xl font-semibold text-on-surface-variant" style="font-family:'Playfair Display',serif;">Traditional Achar</h3>
+            <span class="material-symbols-outlined text-error text-3xl">warning</span>
+          </div>
+          <ul class="space-y-5">
+            <li class="flex items-center gap-4"><div class="w-2 h-2 rounded-full bg-error flex-shrink-0"></div><span class="text-on-surface-variant">Heavy Mustard Oil Base</span></li>
+            <li class="flex items-center gap-4"><div class="w-2 h-2 rounded-full bg-error flex-shrink-0"></div><span class="text-on-surface-variant">Stains Fabrics & Surfaces</span></li>
+            <li class="flex items-center gap-4"><div class="w-2 h-2 rounded-full bg-error flex-shrink-0"></div><span class="text-on-surface-variant">Intense Heat & Dense Spices</span></li>
+            <li class="flex items-center gap-4"><div class="w-2 h-2 rounded-full bg-error flex-shrink-0"></div><span class="text-on-surface-variant">Heavy on the Digestive System</span></li>
+          </ul>
+          <div class="mt-10 h-56 rounded-lg overflow-hidden grayscale opacity-50">
+            <img alt="Traditional Achar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuVR6ujEN6GaYR8PT-dlQXa3bY8NhYYpRSe_O0pq7o8UR5VlF3lK8PvZNz4iG1fRtbDTMMSr77wkGGzmeiIpmAIcqvpXvljlrOs38xvErLXAi0h7QauoB9Q05oXdPTWKIZhGjQEdiVP20PitBsenW9yfHBq8UIJR59mrZVF2vIy49o-uZVSK8WLOLWrr2vkSgQC8FPdn-tBDZYT6-8ZA9o2qpm7HvJNOGKnBonlGW7r7m-2Y4Dt_aMLctE">
+          </div>
+        </div>
+        <div class="bg-emerald-deep p-8 rounded-xl border-2 border-heritage-gold/40 shadow-xl">
+          <div class="flex justify-between items-start mb-8">
+            <h3 class="font-display text-2xl font-semibold text-heritage-gold" style="font-family:'Playfair Display',serif;">Turcu House</h3>
+            <span class="material-symbols-outlined text-heritage-gold text-3xl" style="font-variation-settings:'FILL' 1;">check_circle</span>
+          </div>
+          <ul class="space-y-5">
+            <li class="flex items-center gap-4"><div class="w-2 h-2 rounded-full bg-heritage-gold flex-shrink-0"></div><span class="text-surface-variant">Pure Vinegar Brine Base</span></li>
+            <li class="flex items-center gap-4"><div class="w-2 h-2 rounded-full bg-heritage-gold flex-shrink-0"></div><span class="text-surface-variant">Clean Finish, No Stains</span></li>
+            <li class="flex items-center gap-4"><div class="w-2 h-2 rounded-full bg-heritage-gold flex-shrink-0"></div><span class="text-surface-variant">Crisp, Tangy, & Probiotic</span></li>
+            <li class="flex items-center gap-4"><div class="w-2 h-2 rounded-full bg-heritage-gold flex-shrink-0"></div><span class="text-surface-variant">Aids Digestion (Gut Friendly)</span></li>
+          </ul>
+          <div class="mt-10 h-56 rounded-lg overflow-hidden border border-white/10">
+            <img alt="Turcu House Clear Brine" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuxCPPwScIIvvr-PplLiO3uBKNz7ai5g24cMnlrAdwI8ki3-yi96szBtlDHsQYsQNBVm1Z5ZGkQx6A7FgtTtlyU35QczysHwxNIEcZinFwNm4V3ZqS9NZFkRo3F-WrHTL6lMnZJ0LGm0HtBXx4gXStLeFeoAi73lN-Cwc1q7WrlBMR9Jmq7Nq247O1tEAMhbN1167lECsfBlUFSaPBPM62lPJxZGwRQ0CKYdH_7RBePB8mNcvIriUu3zg">
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- ── STAGE 3: Final Opinions ── -->
-    <div class="stage" id="stage-3">
-      <div class="card">
-        <div class="card-header">
-          <div class="card-icon">💬</div>
-          <div>
-            <div class="card-title">Your Opinion — The Real Stuff</div>
-            <div class="card-sub">Be honest! This is what we care about most</div>
-          </div>
+  <section class="py-24">
+    <div class="px-6 md:px-16 max-w-[1200px] mx-auto">
+      <div class="flex justify-between items-end mb-12">
+        <div>
+          <span class="text-xs font-semibold tracking-widest text-heritage-gold uppercase">Local Favorites</span>
+          <h2 class="font-display text-4xl font-bold text-primary mt-1" style="font-family:'Playfair Display',serif;">The Artisanal Pantry</h2>
         </div>
-        <div class="card-body">
-          <div class="field-grid">
-
-            <div class="field">
-              <label>How would Pakistani turşu compare to traditional achar on your dining table?</label>
-              <div class="pill-group">
-                <label class="pill"><input type="radio" name="compare-table" value="It would replace achar completely"> Replace achar completely</label>
-                <label class="pill"><input type="radio" name="compare-table" value="Both would coexist — different occasions"> Both coexist — different occasions</label>
-                <label class="pill"><input type="radio" name="compare-table" value="Side option only, achar stays main"> Side option only</label>
-                <label class="pill"><input type="radio" name="compare-table" value="Achar will always be preferred"> Achar always wins 😅</label>
-                <label class="pill"><input type="radio" name="compare-table" value="I don't eat either"> I don't eat either</label>
-              </div>
-            </div>
-
-            <div class="field">
-              <label>What concerns do you have about Turkish turşu in Pakistan?</label>
-              <div class="pill-group">
-                <label class="pill"><input type="checkbox" name="concerns" value="Taste won't suit Pakistani palate"> 👅 Taste won't suit us</label>
-                <label class="pill"><input type="checkbox" name="concerns" value="Too expensive"> 💰 Too expensive</label>
-                <label class="pill"><input type="checkbox" name="concerns" value="Not easily available"> 🏪 Not easily available</label>
-                <label class="pill"><input type="checkbox" name="concerns" value="Unfamiliar product — trust issues"> 🤔 Unfamiliar product</label>
-                <label class="pill"><input type="checkbox" name="concerns" value="Prefer our own desi achar culture"> ❤️ Love our desi achar culture</label>
-                <label class="pill"><input type="checkbox" name="concerns" value="No concerns, sounds great"> ✅ No concerns!</label>
-              </div>
-            </div>
-
-            <div class="field">
-  <label>If a Pakistani brand launched turşu, what would make you <strong>trust it</strong>?</label>
-  <div class="pill-group">
-    <label class="pill"><input type="checkbox" name="trust-factor" value="PSQCA / food safety certification"> 📋 Food safety cert</label>
-    <label class="pill"><input type="checkbox" name="trust-factor" value="Halal logo visible on jar"> ☪️ Halal logo</label>
-    <label class="pill"><input type="checkbox" name="trust-factor" value="Free sample first"> 🎁 Free sample first</label>
-    <label class="pill"><input type="checkbox" name="trust-factor" value="Social media reviews / influencer"> 📱 Social media reviews</label>
-    <label class="pill"><input type="checkbox" name="trust-factor" value="Available in trusted supermarket"> 🏪 In trusted supermarket</label>
-    <label class="pill"><input type="checkbox" name="trust-factor" value="Transparent ingredients list"> 🌿 Clear ingredients</label>
-  </div>
-</div>
-
-<div class="field">
-  <label>Would you recommend turşu to your family if you liked it?</label>
-  <div class="pill-group">
-    <label class="pill"><input type="radio" name="recommend" value="Yes, immediately!"> ✅ Yes, immediately!</label>
-    <label class="pill"><input type="radio" name="recommend" value="Probably, after trying a few times"> 🙂 After trying a few times</label>
-    <label class="pill"><input type="radio" name="recommend" value="Maybe, depends on their taste"> 🤷 Maybe</label>
-    <label class="pill"><input type="radio" name="recommend" value="Unlikely"> 👎 Unlikely</label>
-  </div>
-</div>
-
-            <div class="field">
-              <label>Overall, how excited are you about a <strong>Made-in-Pakistan Turkish Turşu</strong> product?</label>
-              <div class="scale-wrap" id="scale-excited">
-                <button type="button" class="scale-btn" onclick="setScale('excited',1)">1</button>
-                <button type="button" class="scale-btn" onclick="setScale('excited',2)">2</button>
-                <button type="button" class="scale-btn" onclick="setScale('excited',3)">3</button>
-                <button type="button" class="scale-btn" onclick="setScale('excited',4)">4</button>
-                <button type="button" class="scale-btn" onclick="setScale('excited',5)">5</button>
-                <button type="button" class="scale-btn" onclick="setScale('excited',6)">6</button>
-                <button type="button" class="scale-btn" onclick="setScale('excited',7)">7</button>
-                <button type="button" class="scale-btn" onclick="setScale('excited',8)">8</button>
-                <button type="button" class="scale-btn" onclick="setScale('excited',9)">9</button>
-                <button type="button" class="scale-btn" onclick="setScale('excited',10)">10</button>
-              </div>
-              <div class="scale-labels"><span>Not at all</span><span>Super excited!</span></div>
-            </div>
-
-            <div class="field">
-              <label>If you want a <strong>free sample jar</strong> when we do a tasting, drop your WhatsApp below</label>
-              <input type="tel" id="inp-sample-phone" placeholder="0300-XXXXXXX (optional)">
-            </div>
-
-            <div class="field">
-              <label>Anything else you want to tell us? 💬</label>
-              <textarea id="inp-comments" placeholder="Suggestions, ideas, what flavors you'd want, concerns... anything goes!" rows="4"></textarea>
-            </div>
-
-          </div>
-        </div>
-      </div>
-      <div class="info-box">
-        <span>🌿</span>
-        <span>Your response is <strong>completely anonymous</strong> unless you share your number for samples. We never sell data.</span>
-      </div>
-      <div class="btn-row">
-        <button class="btn-back" onclick="goStage(2)">← Back</button>
-        <button class="btn-primary btn-gold" id="submit-btn" onclick="submitSurvey()">
-          <span class="spinner" id="submit-spinner"></span>
-          <span id="submit-text">Submit My Response 🫙</span>
+        <button onclick="showPage('shop')" class="font-semibold text-sm text-primary flex items-center gap-2 hover:text-heritage-gold transition-colors group">
+          View All <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
         </button>
       </div>
-    </div>
-
-    <!-- ── THANK YOU ── -->
-    <div class="stage" id="stage-done">
-      <div class="thank-you">
-        <span class="thank-you-icon">🫙</span>
-        <div class="thank-you-title">Shukriya!</div>
-        <div class="thank-you-sub">Your opinion is now part of Pakistan's turşu story. We'll share the results with everyone when we launch.</div>
-        <div class="thank-you-badge">🎉 Response Recorded — JazakAllah Khair</div>
+      <div class="mb-12 rounded-2xl overflow-hidden glass-card border border-glass-stroke shadow-xl">
+        <div class="grid grid-cols-1 lg:grid-cols-2 items-center">
+          <div class="p-8 lg:p-12 space-y-5">
+            <span class="text-xs font-semibold tracking-widest text-heritage-gold uppercase">Signature Selection</span>
+            <h3 class="font-display text-3xl font-bold text-primary" style="font-family:'Playfair Display',serif;">Mixed Turcu Collection</h3>
+            <p class="text-on-surface-variant leading-relaxed">Discover the perfect harmony of seasonal vegetables preserved in our heritage vinegar brine. Handcrafted in small batches for the ultimate probiotic crunch.</p>
+            <p class="text-2xl font-bold text-primary">PKR 2,100 <span class="text-sm font-normal text-on-surface-variant">/ bundle of 3</span></p>
+            <button onclick="addBundleToCart()" class="bg-primary text-white px-8 py-3 rounded-xl font-semibold text-sm hover:bg-emerald-deep transition-colors shadow-md flex items-center gap-2">
+              <span class="material-symbols-outlined text-lg">add_shopping_cart</span>
+              Add Bundle to Basket
+            </button>
+          </div>
+          <div class="h-[360px]">
+            <img alt="Mixed Collection" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBL05I8GX74iEuNMe7t1kwEpLhBrUuqPUqDIjiAtUOFGYZQzSdC3YqUvLLYa_66vTEnhnF0PoXcnJBVrfC1CTJurPKCmyhxIiapOCfz904r6gokSdsdMKLBxcc9d-HA7M_LjKzjiGJBu7cW0Gh8lOrK_t8Oumt1tbXQmp94Zeyv5YoBH3vDBsrGYJakLC1w56lpDIwCa-iYk5mwVbKYvby0cHCwTyZSGEjexVpX6HURa0uo1X0iI6Xbi1D-hzVzEGyUD4YA0pisca4">
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <div class="card-header">
-          <div class="card-icon" style="background:#f0f9f4;color:#16a34a;">📢</div>
+      <div class="relative">
+        <button id="scroll-left" onclick="scrollCarousel(-1)" class="hidden md:flex absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white border border-outline-variant rounded-full shadow-lg items-center justify-center hover:bg-surface-container transition-colors">
+          <span class="material-symbols-outlined text-primary text-xl">chevron_left</span>
+        </button>
+        <button id="scroll-right" onclick="scrollCarousel(1)" class="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white border border-outline-variant rounded-full shadow-lg items-center justify-center hover:bg-surface-container transition-colors">
+          <span class="material-symbols-outlined text-primary text-xl">chevron_right</span>
+        </button>
+        <div id="home-products" class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scroll-smooth" style="scrollbar-width:none;-ms-overflow-style:none;"></div>
+        <div id="carousel-dots" class="flex justify-center gap-2 mt-6"></div>
+      </div>
+      <style>#home-products::-webkit-scrollbar{display:none;}</style>
+    </div>
+  </section>
+
+  <section class="py-24 bg-emerald-deep text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image:radial-gradient(circle at 2px 2px,#c8913a 1px,transparent 0);background-size:40px 40px;"></div>
+    <div class="px-6 md:px-16 max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+      <div class="space-y-6">
+        <span class="text-xs font-semibold tracking-widest text-heritage-gold uppercase">Wellness Revolution</span>
+        <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight" style="font-family:'Playfair Display',serif;">Liquid Gold: The Brine</h2>
+        <p class="text-lg text-surface-variant leading-relaxed">Our brine is more than just a preservative; it's a digestive powerhouse. In Turkey, this "turşu suyu" is consumed as a tonic — packed with natural probiotics that support gut health and hydration.</p>
+        <div class="space-y-3">
+          <div class="flex items-center gap-3"><span class="material-symbols-outlined text-heritage-gold" style="font-variation-settings:'FILL' 1;">fluid_med</span><span>Natural Probiotic Culture</span></div>
+          <div class="flex items-center gap-3"><span class="material-symbols-outlined text-heritage-gold" style="font-variation-settings:'FILL' 1;">bolt</span><span>Post-Workout Electrolytes</span></div>
+          <div class="flex items-center gap-3"><span class="material-symbols-outlined text-heritage-gold" style="font-variation-settings:'FILL' 1;">spa</span><span>Zero-Oil Digestive Aid</span></div>
+        </div>
+        <button onclick="showPage('brine')" class="bg-heritage-gold text-white px-10 py-4 rounded-xl font-semibold text-sm hover:brightness-110 transition-all shadow-lg mt-4">Learn About Brine Tonics</button>
+      </div>
+      <div class="relative h-80 rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+        <div class="absolute inset-0 bg-heritage-gold opacity-20"></div>
+        <img alt="Brine" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWT5VklBRtIELpWFPA4XwsSI1xH2k7GXhc3EWGnPXB1f5RBF5mmhWHrfOb1qnTyk5GgzDPLCcIkl1L00rLYpAQI9IiJ1sCDMKjuyLs9G4coXyqSXXSQkxAu-ZHBdhU9RRRLfzoRSa60oJ5Zv3tA7wggw_sZfYB-q_2lQnz5ClxFaUCCvAQ75cAZCuQnliTJFXftSi3no9awJz7VEWRbWJW9_Bzuy2Q-ah4Sp_lk47W7jRdL6UOxP-WXLiWTZZ9nlXi5FGaxMPrIT8">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="text-center space-y-2">
+            <div class="text-6xl font-bold text-heritage-gold font-display" style="font-family:'Playfair Display',serif;">turşu</div>
+            <div class="text-sm tracking-[0.3em] uppercase text-white/70">The Original Brine</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE: SHOP -->
+<div id="page-shop" class="page pt-24">
+  <div class="px-6 md:px-16 max-w-[1200px] mx-auto py-16">
+    <div class="mb-12">
+      <span class="text-xs font-semibold tracking-widest text-heritage-gold uppercase">Handcrafted & Small-Batch</span>
+      <h1 class="font-display text-5xl font-bold text-primary mt-2" style="font-family:'Playfair Display',serif;">Our Jars</h1>
+      <p class="text-on-surface-variant mt-3 max-w-lg">Every jar tells a story of two cultures, one ancient brine recipe, and vegetables chosen at peak freshness.</p>
+    </div>
+    <div class="flex gap-3 mb-10 flex-wrap">
+      <button onclick="filterProducts('all',this)" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold bg-primary text-white transition-all">All</button>
+      <button onclick="filterProducts('classic',this)" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold bg-surface-container text-on-surface hover:bg-surface-container-high transition-all">Classic</button>
+      <button onclick="filterProducts('spicy',this)" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold bg-surface-container text-on-surface hover:bg-surface-container-high transition-all">Spicy</button>
+      <button onclick="filterProducts('seasonal',this)" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold bg-surface-container text-on-surface hover:bg-surface-container-high transition-all">Seasonal</button>
+      <button onclick="filterProducts('bundle',this)" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold bg-surface-container text-on-surface hover:bg-surface-container-high transition-all">Bundles</button>
+    </div>
+    <div id="shop-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+  </div>
+</div>
+
+<!-- PAGE: HERITAGE -->
+<div id="page-heritage" class="page pt-24">
+  <div class="bg-emerald-deep text-white py-24 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(circle at 2px 2px,#c8913a 1px,transparent 0);background-size:40px 40px;"></div>
+    <div class="px-6 md:px-16 max-w-[1200px] mx-auto relative z-10 text-center">
+      <span class="text-xs font-semibold tracking-widest text-heritage-gold uppercase">Est. 2024</span>
+      <h1 class="font-display text-5xl md:text-7xl font-bold mt-4 leading-tight" style="font-family:'Playfair Display',serif;">A Bridge Between<br><span class="text-heritage-gold">Two Worlds</span></h1>
+      <p class="text-lg text-surface-variant mt-6 max-w-2xl mx-auto leading-relaxed">Where Turkish "turşu" tradition meets the vibrant food culture of Pakistan, something extraordinary is born.</p>
+    </div>
+  </div>
+  <div class="px-6 md:px-16 max-w-[1200px] mx-auto py-20 space-y-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div class="space-y-6">
+        <span class="text-xs font-semibold tracking-widest text-heritage-gold uppercase">The Istanbul Connection</span>
+        <h2 class="font-display text-4xl font-bold text-primary" style="font-family:'Playfair Display',serif;">Centuries of Preservation Wisdom</h2>
+        <p class="text-on-surface-variant leading-relaxed">In the bazaars of Istanbul, turşu merchants have lined the cobblestone streets for centuries. These artisans mastered the art of locking vegetables in a crystal-clear vinegar brine — no oil, no heaviness, just pure, bright, probiotic-rich flavor.</p>
+        <p class="text-on-surface-variant leading-relaxed">Every morning in Turkey, turşu suyu (brine water) is consumed as a natural tonic. Athletes drink it for electrolytes. Families pour it over meals. It is a way of life.</p>
+      </div>
+      <div class="h-80 rounded-2xl overflow-hidden shadow-xl">
+        <img alt="Istanbul Bazaar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuVR6ujEN6GaYR8PT-dlQXa3bY8NhYYpRSe_O0pq7o8UR5VlF3lK8PvZNz4iG1fRtbDTMMSr77wkGGzmeiIpmAIcqvpXvljlrOs38xvErLXAi0h7QauoB9Q05oXdPTWKIZhGjQEdiVP20PitBsenW9yfHBq8UIJR59mrZVF2vIy49o-uZVSK8WLOLWrr2vkSgQC8FPdn-tBDZYT6-8ZA9o2qpm7HvJNOGKnBonlGW7r7m-2Y4Dt_aMLctE">
+      </div>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div class="h-80 rounded-2xl overflow-hidden shadow-xl order-2 lg:order-1">
+        <img alt="Pakistan Table" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLsV1EhPRdX51xAEdXK9aaQbQPOv2-AAMVOyU6OD0TjROp511eq4ANsgDiVYRy3pWnbPopBstAsB654czree0ZtDcyuR7LRmi6Jhq4PnE8yf3mgbcxvcPANsfyaXMVdQdCIZ3kRgEuhwtVKLeOg0oZTEM_bLuhKweJCz6UTDQDWqf_HiGsg7365DNzhJudDBIChikCGTrOB-zC-zTX7jMHgoqOXYGvgckOWWT6dTyko9Dxrss-mVWuAglG4">
+      </div>
+      <div class="space-y-6 order-1 lg:order-2">
+        <span class="text-xs font-semibold tracking-widest text-heritage-gold uppercase">The Lahore Spark</span>
+        <h2 class="font-display text-4xl font-bold text-primary" style="font-family:'Playfair Display',serif;">Pakistan's Palate, Reimagined</h2>
+        <p class="text-on-surface-variant leading-relaxed">Pakistan's food culture is among the richest in the world — bold, aromatic, and deeply communal. Yet the beloved achar (pickle) tradition relies on heavy oils that can weigh down a meal and stain every surface it touches.</p>
+        <p class="text-on-surface-variant leading-relaxed">Turcu House asked: what if we gave Pakistan the clean, bright crunch it deserves? Using locally-sourced vegetables — Gajar (carrot), green chili, mixed seasonal — and bringing them into a Turkish-style brine? The answer is in every jar.</p>
+      </div>
+    </div>
+    <div class="bg-surface-container-low rounded-2xl p-12">
+      <h2 class="font-display text-3xl font-bold text-primary text-center mb-12" style="font-family:'Playfair Display',serif;">What We Stand For</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center space-y-4">
+          <div class="w-16 h-16 bg-heritage-gold/10 rounded-full flex items-center justify-center mx-auto">
+            <span class="material-symbols-outlined text-heritage-gold text-3xl" style="font-variation-settings:'FILL' 1;">eco</span>
+          </div>
+          <h3 class="font-semibold text-primary text-lg">Zero Oil, Zero Compromise</h3>
+          <p class="text-on-surface-variant text-sm leading-relaxed">Every jar is crafted in a pure vinegar brine — no oils, no artificial preservatives, no shortcuts.</p>
+        </div>
+        <div class="text-center space-y-4">
+          <div class="w-16 h-16 bg-heritage-gold/10 rounded-full flex items-center justify-center mx-auto">
+            <span class="material-symbols-outlined text-heritage-gold text-3xl" style="font-variation-settings:'FILL' 1;">handshake</span>
+          </div>
+          <h3 class="font-semibold text-primary text-lg">Cultural Respect</h3>
+          <p class="text-on-surface-variant text-sm leading-relaxed">We honor both the Turkish turşu masters and the Pakistani farmers who grow our vegetables.</p>
+        </div>
+        <div class="text-center space-y-4">
+          <div class="w-16 h-16 bg-heritage-gold/10 rounded-full flex items-center justify-center mx-auto">
+            <span class="material-symbols-outlined text-heritage-gold text-3xl" style="font-variation-settings:'FILL' 1;">science</span>
+          </div>
+          <h3 class="font-semibold text-primary text-lg">Gut-First Thinking</h3>
+          <p class="text-on-surface-variant text-sm leading-relaxed">Probiotic cultures form naturally in our brine — real fermentation, real benefits.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: BRINE -->
+<div id="page-brine" class="page pt-24">
+  <div class="bg-emerald-deep text-white py-20 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(circle at 2px 2px,#c8913a 1px,transparent 0);background-size:40px 40px;"></div>
+    <div class="px-6 md:px-16 max-w-[1200px] mx-auto text-center relative z-10">
+      <span class="text-xs font-semibold tracking-widest text-heritage-gold uppercase">Liquid Gold</span>
+      <h1 class="font-display text-5xl md:text-6xl font-bold mt-4" style="font-family:'Playfair Display',serif;">The Brine</h1>
+      <p class="text-surface-variant text-lg mt-4 max-w-xl mx-auto">More than a preservative — it's a centuries-old wellness tonic, reimagined for today.</p>
+    </div>
+  </div>
+  <div class="px-6 md:px-16 max-w-[1200px] mx-auto py-20 space-y-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div class="space-y-6">
+        <span class="text-xs font-semibold tracking-widest text-heritage-gold uppercase">Turşu Suyu</span>
+        <h2 class="font-display text-4xl font-bold text-primary" style="font-family:'Playfair Display',serif;">What Is Brine Water?</h2>
+        <p class="text-on-surface-variant leading-relaxed">In Turkey, <em>turşu suyu</em> — the liquid inside the pickle jar — is not waste. It is consumed directly as a daily tonic. Turkish street vendors sell it by the glass next to fresh pressed pomegranate juice.</p>
+        <p class="text-on-surface-variant leading-relaxed">Rich in naturally-occurring lactic acid bacteria, electrolytes, and the essence of every vegetable it has touched, our brine is a living liquid that evolves with time.</p>
+        <div class="bg-heritage-gold/10 border border-heritage-gold/30 rounded-xl p-6">
+          <p class="text-sm font-semibold text-primary italic">"After a long workout, Turkish athletes don't reach for a sports drink — they reach for turşu suyu."</p>
+        </div>
+      </div>
+      <div class="h-96 rounded-2xl overflow-hidden shadow-xl relative">
+        <img alt="Brine" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWT5VklBRtIELpWFPA4XwsSI1xH2k7GXhc3EWGnPXB1f5RBF5mmhWHrfOb1qnTyk5GgzDPLCcIkl1L00rLYpAQI9IiJ1sCDMKjuyLs9G4coXyqSXXSQkxAu-ZHBdhU9RRRLfzoRSa60oJ5Zv3tA7wggw_sZfYB-q_2lQnz5ClxFaUCCvAQ75cAZCuQnliTJFXftSi3no9awJz7VEWRbWJW9_Bzuy2Q-ah4Sp_lk47W7jRdL6UOxP-WXLiWTZZ9nlXi5FGaxMPrIT8">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+      </div>
+    </div>
+    <div>
+      <h2 class="font-display text-3xl font-bold text-primary text-center mb-12" style="font-family:'Playfair Display',serif;">Brine Benefits</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="glass-card rounded-xl p-6 text-center space-y-3 border border-glass-stroke">
+          <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+            <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">health_and_safety</span>
+          </div>
+          <h3 class="font-semibold text-primary">Gut Microbiome</h3>
+          <p class="text-xs text-on-surface-variant leading-relaxed">Natural probiotics feed beneficial bacteria and support a balanced digestive ecosystem.</p>
+        </div>
+        <div class="glass-card rounded-xl p-6 text-center space-y-3 border border-glass-stroke">
+          <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+            <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">bolt</span>
+          </div>
+          <h3 class="font-semibold text-primary">Electrolytes</h3>
+          <p class="text-xs text-on-surface-variant leading-relaxed">Sodium, potassium, and minerals from fermentation help replenish what exercise takes away.</p>
+        </div>
+        <div class="glass-card rounded-xl p-6 text-center space-y-3 border border-glass-stroke">
+          <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+            <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">restaurant</span>
+          </div>
+          <h3 class="font-semibold text-primary">Appetite Balance</h3>
+          <p class="text-xs text-on-surface-variant leading-relaxed">Acetic acid in vinegar is known to support healthy appetite regulation and blood sugar levels.</p>
+        </div>
+        <div class="glass-card rounded-xl p-6 text-center space-y-3 border border-glass-stroke">
+          <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+            <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">water_drop</span>
+          </div>
+          <h3 class="font-semibold text-primary">Deep Hydration</h3>
+          <p class="text-xs text-on-surface-variant leading-relaxed">Unlike plain water, brine water carries minerals that help cells absorb and retain hydration.</p>
+        </div>
+      </div>
+    </div>
+    <div class="bg-emerald-deep rounded-2xl p-12 text-white">
+      <h2 class="font-display text-3xl font-bold text-center mb-10" style="font-family:'Playfair Display',serif;">How to Enjoy the Brine</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center space-y-3">
+          <div class="text-5xl font-bold text-heritage-gold font-display" style="font-family:'Playfair Display',serif;">01</div>
+          <h3 class="font-semibold text-lg">As a Morning Tonic</h3>
+          <p class="text-surface-variant text-sm leading-relaxed">2-3 tablespoons on an empty stomach to kickstart digestion and set a healthy gut tone for the day.</p>
+        </div>
+        <div class="text-center space-y-3">
+          <div class="text-5xl font-bold text-heritage-gold font-display" style="font-family:'Playfair Display',serif;">02</div>
+          <h3 class="font-semibold text-lg">Post-Workout Shot</h3>
+          <p class="text-surface-variant text-sm leading-relaxed">A shot glass of cold brine after exercise replenishes electrolytes naturally — no artificial flavors needed.</p>
+        </div>
+        <div class="text-center space-y-3">
+          <div class="text-5xl font-bold text-heritage-gold font-display" style="font-family:'Playfair Display',serif;">03</div>
+          <h3 class="font-semibold text-lg">As a Cooking Base</h3>
+          <p class="text-surface-variant text-sm leading-relaxed">Use it in salad dressings, marinades, or splash it over grilled meats for an instant depth of flavor.</p>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <button onclick="showPage('shop')" class="bg-heritage-gold text-white px-10 py-4 rounded-xl font-semibold text-sm hover:brightness-110 transition-all shadow-lg">Shop the Jars →</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: PROCESS -->
+<div id="page-process" class="page pt-24">
+  <div class="bg-emerald-deep text-white py-20 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(circle at 2px 2px,#c8913a 1px,transparent 0);background-size:40px 40px;"></div>
+    <div class="px-6 md:px-16 max-w-[1200px] mx-auto text-center relative z-10">
+      <span class="text-xs font-semibold tracking-widest text-heritage-gold uppercase">Crafted by Hand</span>
+      <h1 class="font-display text-5xl md:text-6xl font-bold mt-4" style="font-family:'Playfair Display',serif;">The Process</h1>
+      <p class="text-surface-variant text-lg mt-4 max-w-xl mx-auto">From farm to jar — here is how every Turcu House pickle is made.</p>
+    </div>
+  </div>
+  <div class="px-6 md:px-16 max-w-[1200px] mx-auto py-20">
+    <div class="space-y-0 relative">
+      <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-outline-variant"></div>
+      <div class="process-step grid grid-cols-1 md:grid-cols-2 gap-8 pb-16 relative">
+        <div class="md:text-right md:pr-16 pl-20 md:pl-0">
+          <span class="text-6xl font-bold text-heritage-gold font-display opacity-30" style="font-family:'Playfair Display',serif;">01</span>
+          <h3 class="font-display text-2xl font-bold text-primary mt-2" style="font-family:'Playfair Display',serif;">Sourcing the Finest</h3>
+          <p class="text-on-surface-variant mt-3 leading-relaxed">We source vegetables from trusted Pakistani farms — hand-picked at peak freshness, never compromising on quality. Gajar from Lahore's outskirts, green chilies from Sindh, cucumbers from local growers.</p>
+        </div>
+        <div class="pl-20 md:pl-16 hidden md:block">
+          <div class="h-52 rounded-xl overflow-hidden shadow-md">
+            <img alt="Sourcing" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLsV1EhPRdX51xAEdXK9aaQbQPOv2-AAMVOyU6OD0TjROp511eq4ANsgDiVYRy3pWnbPopBstAsB654czree0ZtDcyuR7LRmi6Jhq4PnE8yf3mgbcxvcPANsfyaXMVdQdCIZ3kRgEuhwtVKLeOg0oZTEM_bLuhKweJCz6UTDQDWqf_HiGsg7365DNzhJudDBIChikCGTrOB-zC-zTX7jMHgoqOXYGvgckOWWT6dTyko9Dxrss-mVWuAglG4">
+          </div>
+        </div>
+        <div class="absolute left-8 md:left-1/2 top-4 w-8 h-8 bg-heritage-gold rounded-full -translate-x-1/2 flex items-center justify-center shadow-md">
+          <span class="material-symbols-outlined text-white text-sm">local_florist</span>
+        </div>
+      </div>
+      <div class="process-step grid grid-cols-1 md:grid-cols-2 gap-8 pb-16 relative">
+        <div class="pl-20 md:pl-0 md:pr-16 hidden md:block">
+          <div class="h-52 rounded-xl overflow-hidden shadow-md">
+            <img alt="Brine preparation" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuxCPPwScIIvvr-PplLiO3uBKNz7ai5g24cMnlrAdwI8ki3-yi96szBtlDHsQYsQNBVm1Z5ZGkQx6A7FgtTtlyU35QczysHwxNIEcZinFwNm4V3ZqS9NZFkRo3F-WrHTL6lMnZJ0LGm0HtBXx4gXStLeFeoAi73lN-Cwc1q7WrlBMR9Jmq7Nq247O1tEAMhbN1167lECsfBlUFSaPBPM62lPJxZGwRQ0CKYdH_7RBePB8mNcvIriUu3zg">
+          </div>
+        </div>
+        <div class="md:pl-16 pl-20">
+          <span class="text-6xl font-bold text-heritage-gold font-display opacity-30" style="font-family:'Playfair Display',serif;">02</span>
+          <h3 class="font-display text-2xl font-bold text-primary mt-2" style="font-family:'Playfair Display',serif;">The Heritage Brine</h3>
+          <p class="text-on-surface-variant mt-3 leading-relaxed">Following a recipe refined over generations, our brine is prepared from pure vinegar, filtered water, Himalayan pink salt, and a proprietary spice blend. No oil. No artificial additives. Nothing but heritage.</p>
+        </div>
+        <div class="absolute left-8 md:left-1/2 top-4 w-8 h-8 bg-heritage-gold rounded-full -translate-x-1/2 flex items-center justify-center shadow-md">
+          <span class="material-symbols-outlined text-white text-sm">water_drop</span>
+        </div>
+      </div>
+      <div class="process-step grid grid-cols-1 md:grid-cols-2 gap-8 pb-16 relative">
+        <div class="md:text-right md:pr-16 pl-20 md:pl-0">
+          <span class="text-6xl font-bold text-heritage-gold font-display opacity-30" style="font-family:'Playfair Display',serif;">03</span>
+          <h3 class="font-display text-2xl font-bold text-primary mt-2" style="font-family:'Playfair Display',serif;">Hand-Packing Each Jar</h3>
+          <p class="text-on-surface-variant mt-3 leading-relaxed">Each jar is packed by hand. Vegetables are arranged with intention — not just for aesthetics, but to ensure the brine reaches every piece evenly. It's slower than machines. That's the point.</p>
+        </div>
+        <div class="pl-20 md:pl-16 hidden md:block">
+          <div class="h-52 rounded-xl overflow-hidden shadow-md">
+            <img alt="Hand packing jars" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBL05I8GX74iEuNMe7t1kwEpLhBrUuqPUqDIjiAtUOFGYZQzSdC3YqUvLLYa_66vTEnhnF0PoXcnJBVrfC1CTJurPKCmyhxIiapOCfz904r6gokSdsdMKLBxcc9d-HA7M_LjKzjiGJBu7cW0Gh8lOrK_t8Oumt1tbXQmp94Zeyv5YoBH3vDBsrGYJakLC1w56lpDIwCa-iYk5mwVbKYvby0cHCwTyZSGEjexVpX6HURa0uo1X0iI6Xbi1D-hzVzEGyUD4YA0pisca4">
+          </div>
+        </div>
+        <div class="absolute left-8 md:left-1/2 top-4 w-8 h-8 bg-heritage-gold rounded-full -translate-x-1/2 flex items-center justify-center shadow-md">
+          <span class="material-symbols-outlined text-white text-sm">inventory_2</span>
+        </div>
+      </div>
+      <div class="process-step grid grid-cols-1 md:grid-cols-2 gap-8 relative">
+        <div class="pl-20 md:pl-0 md:pr-16 hidden md:block">
+          <div class="h-52 rounded-xl overflow-hidden shadow-md">
+            <img alt="Fermentation" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLvVcNt85L9LyHtSp_Wc7_oBH4QWakKNFiHWAh2a_F-X_enZDdOpR1qUgh2PrQ_mDq3nSXK5kC7TFzVaAdYQ3yiKrE33dAEpy-yyFuZ9HXOM73qzkgaUWxEC2gNgBtiJZXM2hjnRZrwV1bkSwtOwP_JAvlPXynL44cctULd2jN_6mUYZXIO-VQOI_pkYvnvgmU_yB7iIqNCdfJxqCX_0n4FrqhZS_vhLay_RsSLuwBmMF-A02WPX4OFMb7k">
+          </div>
+        </div>
+        <div class="md:pl-16 pl-20">
+          <span class="text-6xl font-bold text-heritage-gold font-display opacity-30" style="font-family:'Playfair Display',serif;">04</span>
+          <h3 class="font-display text-2xl font-bold text-primary mt-2" style="font-family:'Playfair Display',serif;">Resting & Fermentation</h3>
+          <p class="text-on-surface-variant mt-3 leading-relaxed">The sealed jars rest for a minimum of 7 days, allowing natural fermentation to begin. The probiotics develop, the flavors deepen, and the brine transforms into a living wellness tonic. Time is the final ingredient.</p>
+        </div>
+        <div class="absolute left-8 md:left-1/2 top-4 w-8 h-8 bg-heritage-gold rounded-full -translate-x-1/2 flex items-center justify-center shadow-md">
+          <span class="material-symbols-outlined text-white text-sm">schedule</span>
+        </div>
+      </div>
+    </div>
+    <div class="mt-16 text-center">
+      <button onclick="showPage('shop')" class="bg-heritage-gold text-white px-10 py-4 rounded-xl font-semibold text-sm hover:brightness-110 transition-all shadow-lg">Shop the Collection →</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: CHECKOUT -->
+<div id="page-checkout" class="page pt-24">
+  <div class="px-6 md:px-16 max-w-[900px] mx-auto py-16">
+    <button onclick="showPage('shop')" class="flex items-center gap-2 text-sm text-on-surface-variant hover:text-primary mb-8 group transition-colors">
+      <span class="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">arrow_back</span>
+      Back to shop
+    </button>
+    <h1 class="font-display text-4xl font-bold text-primary mb-2" style="font-family:'Playfair Display',serif;">Checkout</h1>
+    <p class="text-on-surface-variant mb-10">Fill in your details and we'll confirm your order via WhatsApp.</p>
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-10">
+      <div class="lg:col-span-3 space-y-6">
+        <div class="bg-surface-container-low rounded-2xl p-8 space-y-5">
+          <h2 class="font-semibold text-primary text-lg">Your Details</h2>
           <div>
-            <div class="card-title">Help Us Spread the Word</div>
-            <div class="card-sub">Share this survey with friends who love food</div>
+            <label class="block text-xs font-semibold tracking-wider text-on-surface-variant uppercase mb-2">Full Name *</label>
+            <input id="co-name" type="text" placeholder="e.g. Ahmed Khan" class="w-full border border-outline-variant rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-heritage-gold focus:ring-2 focus:ring-heritage-gold/20 transition-all bg-surface">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold tracking-wider text-on-surface-variant uppercase mb-2">WhatsApp Number *</label>
+            <input id="co-phone" type="tel" placeholder="+92 300 1234567" class="w-full border border-outline-variant rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-heritage-gold focus:ring-2 focus:ring-heritage-gold/20 transition-all bg-surface">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold tracking-wider text-on-surface-variant uppercase mb-2">Delivery Address *</label>
+            <textarea id="co-address" rows="3" placeholder="House/Flat no., Street, City" class="w-full border border-outline-variant rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-heritage-gold focus:ring-2 focus:ring-heritage-gold/20 transition-all bg-surface resize-none"></textarea>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold tracking-wider text-on-surface-variant uppercase mb-2">City *</label>
+            <input id="co-city" type="text" placeholder="Lahore" class="w-full border border-outline-variant rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-heritage-gold focus:ring-2 focus:ring-heritage-gold/20 transition-all bg-surface">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold tracking-wider text-on-surface-variant uppercase mb-2">Special Instructions (optional)</label>
+            <textarea id="co-notes" rows="2" placeholder="Any notes for your order..." class="w-full border border-outline-variant rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-heritage-gold focus:ring-2 focus:ring-heritage-gold/20 transition-all bg-surface resize-none"></textarea>
           </div>
         </div>
-        <div class="card-body">
-          <p style="font-size:14px;color:var(--muted);line-height:1.7;">The more responses we collect, the better product we can build for Pakistan. Forward this link to food lovers, home cooks, and anyone who has an opinion about achar!</p>
-          <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
-            <button class="btn-primary" style="max-width:200px;" onclick="shareWA()">📲 Share on WhatsApp</button>
-            <button class="btn-back" onclick="copyLink()">🔗 Copy Link</button>
+        <div class="bg-emerald-deep/5 border border-emerald-deep/20 rounded-xl p-6 flex gap-4">
+          <span class="material-symbols-outlined text-emerald-deep mt-0.5" style="font-variation-settings:'FILL' 1;">whatsapp</span>
+          <div>
+            <p class="text-sm font-semibold text-primary">Order via WhatsApp</p>
+            <p class="text-xs text-on-surface-variant mt-1 leading-relaxed">Clicking "Place Order" will open WhatsApp with your full order details pre-filled. Payment & delivery will be confirmed by our team.</p>
           </div>
         </div>
       </div>
-    </div>
-
-  </div><!-- /main -->
-</div><!-- /survey-app -->
-
-<!-- ══════════════════════════════════════
-     ADMIN PORTAL
-══════════════════════════════════════ -->
-<div id="admin-portal">
-
-  <!-- LOGIN -->
-  <div id="adm-login-screen" class="adm-login-wrap">
-    <div class="adm-login-box">
-      <div class="adm-logo">Turşu <span>Admin</span></div>
-      <div class="adm-badge">Survey Dashboard · Staff Only</div>
-      <div class="adm-field">
-        <label>Email</label>
-        <input type="email" id="adm-email" placeholder="admin@tursu.pk" autocomplete="email">
-      </div>
-      <div class="adm-field">
-        <label>Password</label>
-        <input type="password" id="adm-password" placeholder="••••••••" onkeydown="if(event.key==='Enter')admLogin()">
-      </div>
-      <div class="adm-login-err" id="adm-login-err"></div>
-      <button class="adm-login-btn" id="adm-login-btn" onclick="admLogin()">
-        <span class="spinner" id="adm-login-spin" style="border-top-color:#4ade80;"></span>
-        <span id="adm-login-text">Sign In</span>
-      </button>
-      <div style="margin-top:20px;font-size:11px;color:#3a5030;text-align:center;line-height:1.6;">Access restricted to authorised staff.<br>Contact admin to set up your account.</div>
-    </div>
-  </div>
-
-  <!-- DASHBOARD -->
-  <div id="adm-dashboard" style="display:none;flex-direction:column;flex:1;">
-    <div class="adm-header">
-      <div class="adm-header-logo">Turşu <span>Pakistan</span> <span style="font-size:11px;font-weight:600;color:#2a3322;margin-left:8px;letter-spacing:2px;">SURVEY ADMIN</span></div>
-      <div class="adm-header-right">
-        <div class="adm-user" id="adm-user-email"></div>
-        <button class="adm-logout" onclick="admLogout()">Sign Out</button>
-      </div>
-    </div>
-    <div class="adm-body">
-      <!-- Stats -->
-      <div class="adm-stats" id="adm-stats">
-        <div class="adm-stat"><div class="adm-stat-val gold" id="stat-total">—</div><div class="adm-stat-label">Total Responses</div></div>
-        <div class="adm-stat"><div class="adm-stat-val green" id="stat-yes">—</div><div class="adm-stat-label">Want to Try</div></div>
-        <div class="adm-stat"><div class="adm-stat-val blue" id="stat-avg">—</div><div class="adm-stat-label">Avg Excitement /10</div></div>
-        <div class="adm-stat"><div class="adm-stat-val" style="color:#f5d9a8;" id="stat-samples">—</div><div class="adm-stat-label">Requested Samples</div></div>
-      </div>
-
-      <!-- Filters -->
-      <div class="adm-filters">
-        <input class="adm-search" id="adm-search" placeholder="🔍  Search name, city, phone..." oninput="renderAdmTable()">
-        <select class="adm-select" id="adm-filter-try" onchange="renderAdmTable()">
-          <option value="">All Responses</option>
-          <option value="Yes, definitely!">Definitely try</option>
-          <option value="Probably yes">Probably yes</option>
-          <option value="Maybe, not sure">Maybe</option>
-          <option value="Probably not">Probably not</option>
-          <option value="No, not interested">No</option>
-        </select>
-        <select class="adm-select" id="adm-filter-city" onchange="renderAdmTable()">
-          <option value="">All Cities</option>
-          <option>Karachi</option>
-          <option>Lahore</option>
-          <option>Islamabad / Rawalpindi</option>
-          <option>Multan</option>
-          <option>Faisalabad</option>
-          <option>Peshawar</option>
-          <option>Quetta</option>
-          <option>Hyderabad</option>
-          <option>Other</option>
-        </select>
-        <button class="adm-refresh" onclick="loadResponses()">↻ Refresh</button>
-      </div>
-
-      <!-- Table -->
-      <div class="adm-table-wrap">
-        <div class="adm-table-head">
-          <div class="adm-table-title">Survey Responses</div>
-          <div class="adm-count" id="adm-count">— records</div>
-        </div>
-        <div id="adm-table-body">
-          <div class="adm-loading"><div class="adm-spin"></div><div style="font-size:13px;font-weight:600;">Loading...</div></div>
+      <div class="lg:col-span-2">
+        <div class="bg-surface-container-low rounded-2xl p-6 sticky top-28">
+          <h2 class="font-semibold text-primary text-lg mb-5">Order Summary</h2>
+          <div id="checkout-items" class="space-y-4 mb-5"></div>
+          <div class="border-t border-outline-variant pt-4 space-y-2">
+            <div class="flex justify-between text-sm text-on-surface-variant">
+              <span>Subtotal</span>
+              <span id="checkout-subtotal"></span>
+            </div>
+            <div class="flex justify-between text-sm text-on-surface-variant items-start gap-2">
+              <span class="flex-shrink-0">Delivery Charges</span>
+              <span class="text-heritage-gold text-right text-xs font-semibold leading-tight">At customer's end<br><span class="text-on-surface-variant font-normal">Confirmed via WhatsApp</span></span>
+            </div>
+            <div class="bg-heritage-gold/8 border border-heritage-gold/25 rounded-lg px-3 py-2 flex gap-2 items-start">
+              <span class="material-symbols-outlined text-heritage-gold text-base mt-0.5 flex-shrink-0" style="font-variation-settings:'FILL' 1;">info</span>
+              <p class="text-[10px] text-on-surface-variant leading-relaxed">Delivery charges are borne by the customer and will be communicated by our team after order confirmation on WhatsApp.</p>
+            </div>
+            <div class="flex justify-between font-bold text-primary text-base pt-2 border-t border-outline-variant">
+              <span>Total (excl. delivery)</span>
+              <span id="checkout-total"></span>
+            </div>
+          </div>
+          <div class="mt-6 rounded-2xl overflow-hidden shadow-xl" style="background:linear-gradient(145deg,#001f15 0%,#00442b 60%,#0a5c35 100%);">
+            <div class="px-5 pt-5 pb-2 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.15);">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#4ade80"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.112 1.523 5.845L.057 23.427a.5.5 0 0 0 .609.61l5.692-1.447A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.006-1.374l-.36-.214-3.722.946.992-3.624-.235-.373A9.808 9.808 0 0 1 2.182 12C2.182 6.575 6.575 2.182 12 2.182S21.818 6.575 21.818 12 17.425 21.818 12 21.818z"/></svg>
+              </div>
+              <div>
+                <p class="text-white/40 text-[10px] tracking-[0.15em] uppercase font-semibold">Instant Confirmation</p>
+                <p class="text-white font-bold text-sm leading-tight" style="font-family:'Playfair Display',serif;">Send Order via WhatsApp</p>
+              </div>
+            </div>
+            <div class="px-5 pb-5">
+              <p class="text-white/40 text-[10px] leading-relaxed mb-4 mt-1">Your full order details will be sent instantly. Our team confirms your delivery within minutes.</p>
+              <button onclick="placeOrder()" class="group w-full relative overflow-hidden rounded-xl py-3.5 font-bold text-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0" style="background:linear-gradient(135deg,#b07d2e 0%,#c8913a 40%,#daa84f 100%);color:#fff;letter-spacing:0.06em;">
+                <span class="relative flex items-center justify-center gap-2">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.112 1.523 5.845L.057 23.427a.5.5 0 0 0 .609.61l5.692-1.447A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.006-1.374l-.36-.214-3.722.946.992-3.624-.235-.373A9.808 9.808 0 0 1 2.182 12C2.182 6.575 6.575 2.182 12 2.182S21.818 6.575 21.818 12 17.425 21.818 12 21.818z"/></svg>
+                  Place My Order
+                </span>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center justify-center gap-1.5 mt-3">
+            <span class="material-symbols-outlined text-outline text-sm" style="font-variation-settings:'FILL' 1;">lock</span>
+            <p class="text-[10px] text-center text-on-surface-variant">Details sent only to Turcu House · No account needed</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- DRAWER -->
-<div class="adm-overlay" id="adm-overlay" onclick="closeDrawer()"></div>
-<div class="adm-drawer" id="adm-drawer">
-  <div class="adm-drawer-header">
-    <div class="adm-drawer-title" id="drw-title">Response Details</div>
-    <button class="adm-drawer-close" onclick="closeDrawer()">✕</button>
+<!-- FOOTER -->
+<footer class="bg-emerald-deep rounded-t-2xl mt-16">
+  <div class="px-6 md:px-16 max-w-[1200px] mx-auto py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+      <div class="space-y-4">
+        <div class="flex items-center gap-2 cursor-pointer" onclick="showPage('home')">
+          <img alt="Turcu House" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtr86iKTDp6SbIM5IzN2PqAWZzr8yB9LWxtyCNN2o3KpONo-u7izmkAEcTkLlH_2pdIRfWC8V9t9RpVquab0g3VgXVHkG6YzyVYUKubJDcUIU3p-htdkm4RwcsusyGKiTAqt4KZOxrTvktVzKuNzYu8lmlpOHCy_BSPLCXAqbJ4CHk-mSDAWMXvfj4qlrGrz60gaCtsrG42c1-oFQIqWaLFwxXeE45MYtZ_cP8xgdLGuL4mGlszgZ0jqeOyCuSyVIrji3Tn4RL99Q">
+          <span class="font-display text-xl font-semibold text-surface" style="font-family:'Playfair Display',serif;">Turcu House</span>
+        </div>
+        <p class="text-sm text-primary-fixed-dim max-w-xs leading-relaxed">Artisanal vinegar-brine pickles. Oil-free, probiotic-rich, and crafted with heritage from Istanbul to Lahore.</p>
+      </div>
+      <div>
+        <h4 class="text-xs font-semibold tracking-widest text-heritage-gold uppercase mb-4">Navigate</h4>
+        <div class="space-y-3">
+          <div class="text-sm text-primary-fixed-dim hover:text-surface transition-colors cursor-pointer" onclick="showPage('heritage')">Heritage</div>
+          <div class="text-sm text-primary-fixed-dim hover:text-surface transition-colors cursor-pointer" onclick="showPage('shop')">Our Jars</div>
+          <div class="text-sm text-primary-fixed-dim hover:text-surface transition-colors cursor-pointer" onclick="showPage('brine')">The Brine</div>
+          <div class="text-sm text-primary-fixed-dim hover:text-surface transition-colors cursor-pointer" onclick="showPage('process')">The Process</div>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-xs font-semibold tracking-widest text-heritage-gold uppercase mb-4">Order via WhatsApp</h4>
+        <a href="https://wa.me/905338654078" target="_blank" class="group inline-flex items-center gap-3 relative overflow-hidden rounded-2xl px-5 py-3.5 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5" style="background:linear-gradient(135deg,#001f15 0%,#00442b 100%);border:1px solid rgba(255,255,255,0.1);">
+          <div class="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(255,255,255,0.12);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#4ade80"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.112 1.523 5.845L.057 23.427a.5.5 0 0 0 .609.61l5.692-1.447A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.006-1.374l-.36-.214-3.722.946.992-3.624-.235-.373A9.808 9.808 0 0 1 2.182 12C2.182 6.575 6.575 2.182 12 2.182S21.818 6.575 21.818 12 17.425 21.818 12 21.818z"/></svg>
+          </div>
+          <div>
+            <div class="text-white/50 text-[9px] tracking-widest uppercase font-semibold">Direct Order</div>
+            <div class="text-white font-bold text-sm leading-tight">Chat with Us</div>
+          </div>
+          <span class="material-symbols-outlined text-heritage-gold text-lg group-hover:translate-x-1 transition-transform ml-1">arrow_forward</span>
+        </a>
+        <p class="text-xs text-primary-fixed-dim mt-4">© 2024 Turcu House. All rights reserved.</p>
+      </div>
+    </div>
   </div>
-  <div class="adm-drawer-body" id="drw-body"></div>
-</div>
+</footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-/* ═══════════════════════════════════════
-   CONFIG
-═══════════════════════════════════════ */
-const SUPABASE_URL = 'https://dauesiuxkvwugraggdjp.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRhdWVzaXV4a3Z3dWdyYWdnZGpwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE2OTA1OTAsImV4cCI6MjA5NzI2NjU5MH0.kkfk2LieOFs2NIwMADohpyGOyno9bfF29f9yVYD0lmY';
+// ============================================================ DATA
+const PRODUCTS = [
+  {
+    id: 1, name: "Classic Cucumber", tag: "Classic", category: "classic",
+    price: 695, price1000: 1195, size: "500ml jar",
+    desc: "Our signature offering. Fresh cucumbers preserved in our heritage Turkish vinegar brine with dill, garlic, and a whisper of black pepper. The crunch that started it all.",
+    benefits: ["Probiotic Rich", "Oil-Free", "Gut Friendly", "Low Calorie"],
+    img: "https://lh3.googleusercontent.com/aida/AP1WRLvVcNt85L9LyHtSp_Wc7_oBH4QWakKNFiHWAh2a_F-X_enZDdOpR1qUgh2PrQ_mDq3nSXK5kC7TFzVaAdYQ3yiKrE33dAEpy-yyFuZ9HXOM73qzkgaUWxEC2gNgBtiJZXM2hjnRZrwV1bkSwtOwP_JAvlPXynL44cctULd2jN_6mUYZXIO-VQOI_pkYvnvgmU_yB7iIqNCdfJxqCX_0n4FrqhZS_vhLay_RsSLuwBmMF-A02WPX4OFMb7k"
+  },
+  {
+    id: 2, name: "Gajar (Carrot)", tag: "Classic", category: "classic",
+    price: 695, price1000: 1195, size: "500ml jar",
+    desc: "Sweet, vibrant Pakistani carrots meet our tangy heritage vinegar. The natural sweetness of Gajar creates a perfect counterpoint to the sharp brine. A crowd favourite.",
+    benefits: ["Vitamin A", "Probiotic Rich", "Oil-Free", "Beta-Carotene"],
+    img: "https://lh3.googleusercontent.com/aida/AP1WRLsV1EhPRdX51xAEdXK9aaQbQPOv2-AAMVOyU6OD0TjROp511eq4ANsgDiVYRy3pWnbPopBstAsB654czree0ZtDcyuR7LRmi6Jhq4PnE8yf3mgbcxvcPANsfyaXMVdQdCIZ3kRgEuhwtVKLeOg0oZTEM_bLuhKweJCz6UTDQDWqf_HiGsg7365DNzhJudDBIChikCGTrOB-zC-zTX7jMHgoqOXYGvgckOWWT6dTyko9Dxrss-mVWuAglG4"
+  },
+  {
+    id: 3, name: "Zesty Green Chili", tag: "Spicy", category: "spicy",
+    price: 695, price1000: 1195, size: "500ml jar",
+    desc: "A sharp, clean heat that wakes up the palate without leaving an oily residue. Whole green chilies in a garlic-forward brine. For those who like it bold.",
+    benefits: ["Metabolism Boost", "Capsaicin", "Oil-Free", "Probiotic"],
+    img: "https://lh3.googleusercontent.com/aida/AP1WRLuxCPPwScIIvvr-PplLiO3uBKNz7ai5g24cMnlrAdwI8ki3-yi96szBtlDHsQYsQNBVm1Z5ZGkQx6A7FgtTtlyU35QczysHwxNIEcZinFwNm4V3ZqS9NZFkRo3F-WrHTL6lMnZJ0LGm0HtBXx4gXStLeFeoAi73lN-Cwc1q7WrlBMR9Jmq7Nq247O1tEAMhbN1167lECsfBlUFSaPBPM62lPJxZGwRQ0CKYdH_7RBePB8mNcvIriUu3zg"
+  },
+  {
+    id: 4, name: "Mixed Seasonal", tag: "Seasonal", category: "seasonal",
+    price: 695, price1000: 1195, size: "500ml jar",
+    desc: "A rotating medley of the season's best — currently featuring turnip, cauliflower, and red pepper — all preserved together in one jar. Every batch is different.",
+    benefits: ["Seasonal Nutrients", "Diverse Probiotics", "Oil-Free", "Antioxidants"],
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBL05I8GX74iEuNMe7t1kwEpLhBrUuqPUqDIjiAtUOFGYZQzSdC3YqUvLLYa_66vTEnhnF0PoXcnJBVrfC1CTJurPKCmyhxIiapOCfz904r6gokSdsdMKLBxcc9d-HA7M_LjKzjiGJBu7cW0Gh8lOrK_t8Oumt1tbXQmp94Zeyv5YoBH3vDBsrGYJakLC1w56lpDIwCa-iYk5mwVbKYvby0cHCwTyZSGEjexVpX6HURa0uo1X0iI6Xbi1D-hzVzEGyUD4YA0pisca4"
+  },
+  {
+    id: 5, name: "Mild Cauliflower", tag: "Mild", category: "Mild",
+    price: 695, price1000: 1195, size: "500ml jar",
+    desc: "Cauliflower florets in a warming brine of cumin, coriander seed, and a touch of turmeric. This one bridges the gap between Turkish technique and the South Asian spice palette.",
+    benefits: ["Anti-inflammatory", "Oil-Free", "Probiotic Rich", "High Fibre"],
+    img: "https://i.postimg.cc/SNtpHK8m/Gemini-Generated-Image-iac8j7iac8j7iac8.png"
+  },
+  {
+    id: 6, name: "Starter Bundle (×3)", tag: "Bundle", category: "bundle",
+    price: 2100, price1000: 3200, size: "3 × 500ml jars",
+    desc: "The perfect introduction to Turcu House. Includes Classic Cucumber, Gajar (Carrot), and Zesty Green Chili. Free of charge: one jar of our heritage brine tonic.",
+    benefits: ["Best Value", "3 Flavours", "Gift Ready", "Free Brine Shot"],
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBL05I8GX74iEuNMe7t1kwEpLhBrUuqPUqDIjiAtUOFGYZQzSdC3YqUvLLYa_66vTEnhnF0PoXcnJBVrfC1CTJurPKCmyhxIiapOCfz904r6gokSdsdMKLBxcc9d-HA7M_LjKzjiGJBu7cW0Gh8lOrK_t8Oumt1tbXQmp94Zeyv5YoBH3vDBsrGYJakLC1w56lpDIwCa-iYk5mwVbKYvby0cHCwTyZSGEjexVpX6HURa0uo1X0iI6Xbi1D-hzVzEGyUD4YA0pisca4"
+  }
+];
 
-// Global sb — accessible from all functions
-window.sb = null;
+let cart = [];
+let currentModalProduct = null;
+let modalQty = 1;
+let modalSelectedSize = '500ml';
+let modalSelectedPrice = 695;
 
-function initSupabase() {
-    if (typeof window.supabase === 'undefined' || !window.supabase.createClient) {
-        console.error('Supabase library not loaded yet. Retrying...');
-        setTimeout(initSupabase, 500);
-        return;
+// ============================================================ SIZE SELECTOR
+// FIX: Removed price params from onclick; prices now come from currentModalProduct state
+function selectSize(size) {
+  if (!currentModalProduct) return;
+  modalSelectedSize = size;
+  modalSelectedPrice = size === '1000ml' ? currentModalProduct.price1000 : currentModalProduct.price;
+
+  // Update the bottom price display
+  document.getElementById('modal-price').textContent = 'PKR ' + (modalSelectedPrice * modalQty).toLocaleString();
+
+  // Update button visual states
+  ['500ml', '1000ml'].forEach(s => {
+    const key = s.replace('ml', '');
+    const btn = document.getElementById('size-' + key);
+    const check = document.getElementById('check-' + key);
+    const label = btn.querySelector('.text-xs');
+    const priceEl = btn.querySelector('.text-xl, [id^="price-"]') || btn.querySelector('div:nth-child(2)');
+
+    if (s === size) {
+      btn.className = 'size-btn relative rounded-xl border-2 p-4 text-left transition-all duration-200 border-primary bg-primary/5';
+      label.className = 'text-xs font-bold tracking-widest text-primary uppercase mb-1';
+      check.classList.remove('hidden');
+      check.style.background = '#00442b';
+    } else {
+      btn.className = 'size-btn relative rounded-xl border-2 p-4 text-left transition-all duration-200 border-outline-variant bg-surface-container-low hover:border-primary/40';
+      label.className = 'text-xs font-bold tracking-widest text-on-surface-variant uppercase mb-1';
+      check.classList.add('hidden');
     }
-    try {
-        window.sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-        console.log('✅ Supabase initialized');
-    } catch(e) {
-        console.error('❌ Supabase init failed:', e);
-    }
-}
-
-initSupabase();
-</script>
-<script>
-/* ═══════════════════════════════════════
-   ROUTING
-═══════════════════════════════════════ */
-function openAdmin() {
-  document.getElementById('survey-app').style.display = 'none';
-  document.getElementById('admin-portal').classList.add('active');
-  checkAdmSession();
-}
-function closeSurveyAdmin() {
-  document.getElementById('admin-portal').classList.remove('active');
-  document.getElementById('survey-app').style.display = 'block';
-}
-window.addEventListener('load', () => {
-  if (new URLSearchParams(window.location.search).has('admin')) openAdmin();
-});
-
-/* ═══════════════════════════════════════
-   ADMIN AUTH
-═══════════════════════════════════════ */
-async function checkAdmSession() {
-  if (!window.sb) return;
-  const { data: { session } } = await window.sb.auth.getSession();
-  if (session) showAdmDashboard(session.user);
-}
-async function admLogin() {
-  const email = document.getElementById('adm-email').value.trim();
-  const pass  = document.getElementById('adm-password').value;
-  const errEl = document.getElementById('adm-login-err');
-  const btn   = document.getElementById('adm-login-btn');
-  const spin  = document.getElementById('adm-login-spin');
-  const txt   = document.getElementById('adm-login-text');
-  errEl.classList.remove('show');
-  if (!email || !pass) { errEl.textContent='Enter email and password.'; errEl.classList.add('show'); return; }
-  btn.disabled=true; spin.style.display='block'; txt.textContent='Signing in...';
-  const { data, error } = await window.sb.auth.signInWithPassword({ email, password: pass });
-  btn.disabled=false; spin.style.display='none'; txt.textContent='Sign In';
-  if (error) { errEl.textContent=error.message||'Login failed.'; errEl.classList.add('show'); return; }
-  showAdmDashboard(data.user);
-}
-async function admLogout() {
-  await window.sb.auth.signOut();
-  document.getElementById('adm-dashboard').style.display='none';
-  document.getElementById('adm-login-screen').style.display='flex';
-  allResponses=[];
-}
-function showAdmDashboard(user) {
-  document.getElementById('adm-login-screen').style.display='none';
-  document.getElementById('adm-dashboard').style.display='flex';
-  document.getElementById('adm-user-email').textContent=user.email;
-  loadResponses();
-}
-
-/* ═══════════════════════════════════════
-   DATA
-═══════════════════════════════════════ */
-let allResponses = [];
-async function loadResponses() {
-  document.getElementById('adm-table-body').innerHTML=`<div class="adm-loading"><div class="adm-spin"></div><div style="font-size:13px;font-weight:600;color:#3a5030;">Loading...</div></div>`;
-  if (!window.sb) { document.getElementById('adm-table-body').innerHTML=`<div class="adm-empty"><div class="adm-empty-icon">⚠️</div><div>Supabase not configured.</div></div>`; return; }
-  const { data, error } = await window.sb.from('tursu_survey').select('*').order('submitted_at', { ascending: false });
-  if (error) { document.getElementById('adm-table-body').innerHTML=`<div class="adm-empty"><div class="adm-empty-icon">❌</div><div>${error.message}</div></div>`; return; }
-  allResponses = data || [];
-  updateAdmStats();
-  renderAdmTable();
-}
-function updateAdmStats() {
-  const total   = allResponses.length;
-  const wantYes = allResponses.filter(r => r.would_try && (r.would_try.includes('Yes') || r.would_try.includes('Probably yes'))).length;
-  const avgExc  = total ? (allResponses.reduce((s,r)=>s+(r.excitement_score||0),0)/total).toFixed(1) : '—';
-  const samples = allResponses.filter(r => r.sample_phone && r.sample_phone.trim()).length;
-  document.getElementById('stat-total').textContent   = total;
-  document.getElementById('stat-yes').textContent     = wantYes;
-  document.getElementById('stat-avg').textContent     = avgExc;
-  document.getElementById('stat-samples').textContent = samples;
-}
-function getFiltered() {
-  const q    = document.getElementById('adm-search').value.toLowerCase();
-  const tryF = document.getElementById('adm-filter-try').value;
-  const city = document.getElementById('adm-filter-city').value;
-  return allResponses.filter(r => {
-    if (q && !`${r.name} ${r.phone} ${r.city}`.toLowerCase().includes(q)) return false;
-    if (tryF && r.would_try !== tryF) return false;
-    if (city && r.city !== city) return false;
-    return true;
   });
 }
-function intBadge(val) {
-  if (!val) return `<span class="int-badge maybe">N/A</span>`;
-  if (val.includes('Yes, def') || val === 'Probably yes') return `<span class="int-badge yes">✓ ${val}</span>`;
-  if (val.includes('not interested') || val === 'Probably not') return `<span class="int-badge no">✗ ${val}</span>`;
-  return `<span class="int-badge maybe">${val}</span>`;
+
+// ============================================================ PAGE ROUTING
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
+  document.getElementById('page-' + id).classList.add('active-page');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (id === 'checkout') renderCheckout();
 }
-function renderAdmTable() {
-  const rows = getFiltered();
-  document.getElementById('adm-count').textContent = `${rows.length} record${rows.length!==1?'s':''}`;
-  if (!rows.length) {
-    document.getElementById('adm-table-body').innerHTML=`<div class="adm-empty"><div class="adm-empty-icon">📭</div><div class="adm-empty-text">No responses match your filters.</div></div>`;
+
+function toggleMobileMenu() {
+  document.getElementById('mobile-menu').classList.toggle('hidden');
+}
+
+// ============================================================ PRODUCTS
+function renderProductCard(p, container, isCarousel = false) {
+  const div = document.createElement('div');
+  if (isCarousel) {
+    div.className = 'group cursor-pointer flex-none snap-start';
+    div.style.cssText = 'width:260px;';
+  } else {
+    div.className = 'group cursor-pointer';
+  }
+  div.innerHTML = `
+    <div class="glass-card rounded-xl overflow-hidden mb-4 relative shadow-sm hover:shadow-lg transition-shadow" style="aspect-ratio:4/5;">
+      <img alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${p.img}">
+      <div class="absolute top-3 left-3">
+        <span class="tag-pill bg-white/90 text-primary border border-glass-stroke">${p.tag}</span>
+      </div>
+      <div class="absolute bottom-4 left-4 right-4 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+        <button class="w-full bg-emerald-deep text-white py-3 rounded-xl text-sm font-semibold shadow-lg" onclick="event.stopPropagation();quickAddToCart(${p.id})">Add to Basket</button>
+      </div>
+    </div>
+    <h4 class="font-semibold text-primary text-lg" style="font-family:'Playfair Display',serif;">${p.name}</h4>
+    <p class="text-on-surface-variant text-sm mt-1">${p.desc.substring(0, 80)}...</p>
+    <p class="text-primary font-bold mt-2">From PKR ${p.price.toLocaleString()}</p>
+  `;
+  div.addEventListener('click', () => openModal(p));
+  container.appendChild(div);
+}
+
+function initShopGrid() {
+  const grid = document.getElementById('shop-grid');
+  grid.innerHTML = '';
+  PRODUCTS.forEach(p => renderProductCard(p, grid));
+}
+
+function initHomeProducts() {
+  const container = document.getElementById('home-products');
+  container.innerHTML = '';
+  PRODUCTS.forEach(p => renderProductCard(p, container, true));
+  buildCarouselDots();
+  updateScrollButtons();
+  container.addEventListener('scroll', () => { buildCarouselDots(); updateScrollButtons(); });
+}
+
+function buildCarouselDots() {
+  const c = document.getElementById('home-products');
+  const dots = document.getElementById('carousel-dots');
+  if (!c || !dots) return;
+  const cardW = 260 + 24;
+  const total = PRODUCTS.length;
+  const visible = Math.round(c.offsetWidth / cardW);
+  const pages = Math.max(1, total - visible + 1);
+  const current = Math.round(c.scrollLeft / cardW);
+  dots.innerHTML = '';
+  for (let i = 0; i < pages; i++) {
+    const d = document.createElement('div');
+    d.className = 'rounded-full transition-all duration-300 cursor-pointer';
+    d.style.cssText = i === current
+      ? 'width:24px;height:8px;background:#c8913a;'
+      : 'width:8px;height:8px;background:#bfc9c1;';
+    d.onclick = () => { c.scrollTo({ left: i * cardW, behavior: 'smooth' }); };
+    dots.appendChild(d);
+  }
+}
+
+function scrollCarousel(dir) {
+  const c = document.getElementById('home-products');
+  if (c) c.scrollBy({ left: dir * 280, behavior: 'smooth' });
+}
+
+function updateScrollButtons() {
+  const c = document.getElementById('home-products');
+  const lBtn = document.getElementById('scroll-left');
+  const rBtn = document.getElementById('scroll-right');
+  if (!c || !lBtn || !rBtn) return;
+  lBtn.style.opacity = c.scrollLeft < 10 ? '0.3' : '1';
+  rBtn.style.opacity = c.scrollLeft >= c.scrollWidth - c.offsetWidth - 10 ? '0.3' : '1';
+}
+
+function filterProducts(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.className = 'filter-btn px-5 py-2 rounded-full text-sm font-semibold bg-surface-container text-on-surface hover:bg-surface-container-high transition-all';
+  });
+  btn.className = 'filter-btn px-5 py-2 rounded-full text-sm font-semibold bg-primary text-white transition-all';
+  const grid = document.getElementById('shop-grid');
+  grid.innerHTML = '';
+  const filtered = cat === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === cat);
+  filtered.forEach(p => renderProductCard(p, grid));
+}
+
+// ============================================================ MODAL
+function openModal(p) {
+  currentModalProduct = p;
+  modalQty = 1;
+  modalSelectedSize = '500ml';
+  modalSelectedPrice = p.price;
+
+  document.getElementById('modal-img').src = p.img;
+  document.getElementById('modal-tag').textContent = p.tag;
+  document.getElementById('modal-name').textContent = p.name;
+  document.getElementById('modal-desc').textContent = p.desc;
+  document.getElementById('modal-qty').textContent = 1;
+
+  // FIX: Set correct prices for this product's size buttons on open
+  document.getElementById('price-500').textContent = 'PKR ' + p.price.toLocaleString();
+  document.getElementById('price-1000').textContent = 'PKR ' + p.price1000.toLocaleString();
+
+  // Render benefits
+  const benefitsEl = document.getElementById('modal-benefits');
+  benefitsEl.innerHTML = '';
+  (p.benefits || []).forEach(b => {
+    const pill = document.createElement('span');
+    pill.className = 'tag-pill bg-surface-container text-on-surface-variant border border-outline-variant';
+    pill.textContent = b;
+    benefitsEl.appendChild(pill);
+  });
+
+  // Reset size selection to 500ml
+  selectSize('500ml');
+
+  document.getElementById('modal-bg').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modal-bg') || !e.target) {
+    document.getElementById('modal-bg').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+function changeModalQty(delta) {
+  modalQty = Math.max(1, modalQty + delta);
+  document.getElementById('modal-qty').textContent = modalQty;
+  const lineTotal = modalSelectedPrice * modalQty;
+  document.getElementById('modal-price').textContent = 'PKR ' + lineTotal.toLocaleString();
+}
+
+// FIX: Single definition of addToCartFromModal — no duplicate
+function addToCartFromModal() {
+  if (!currentModalProduct) return;
+  addToCartWithSize(currentModalProduct.id, modalQty, modalSelectedSize, modalSelectedPrice);
+  document.getElementById('modal-bg').classList.remove('open');
+  document.body.style.overflow = '';
+  openCart();
+}
+
+// ============================================================ CART
+
+function quickAddToCart(productId) {
+  const p = PRODUCTS.find(x => x.id === productId);
+  if (!p) return;
+  // Quick-add defaults to 500ml (or fixed size for bundles)
+  const size = p.category === 'bundle' ? p.size : '500ml';
+  const price = p.category === 'bundle' ? p.price : p.price;
+  addToCartWithSize(productId, 1, size, price);
+}
+
+function addBundleToCart() {
+  addToCartWithSize(6, 1, '3 × 500ml jars', 2100);
+}
+
+function addToCartWithSize(productId, qty, size, price) {
+  const p = PRODUCTS.find(x => x.id === productId);
+  if (!p) return;
+  const key = productId + '_' + size;
+  const existing = cart.find(x => x.cartKey === key);
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({ ...p, qty, size, price, cartKey: key });
+  }
+  updateCartUI();
+  showAddedToast(p.name + (p.category === 'bundle' ? '' : ' – ' + size));
+}
+
+function removeFromCart(key) {
+  cart = cart.filter(x => x.cartKey !== key);
+  updateCartUI();
+}
+
+// FIX: changeCartQty now properly re-renders, price per unit stays correct
+function changeCartQty(key, delta) {
+  const item = cart.find(x => x.cartKey === key);
+  if (!item) return;
+  item.qty = Math.max(1, item.qty + delta);
+  updateCartUI();
+}
+
+function cartTotal() {
+  return cart.reduce((s, x) => s + x.price * x.qty, 0);
+}
+
+function updateCartUI() {
+  const badge = document.getElementById('cart-badge');
+  const totalQty = cart.reduce((s, x) => s + x.qty, 0);
+  if (totalQty > 0) {
+    badge.textContent = totalQty;
+    badge.classList.remove('hidden');
+  } else {
+    badge.classList.add('hidden');
+  }
+
+  const itemsEl = document.getElementById('cart-items');
+  const emptyEl = document.getElementById('cart-empty');
+  const footerEl = document.getElementById('cart-footer');
+
+  if (cart.length === 0) {
+    itemsEl.innerHTML = '';
+    emptyEl.classList.remove('hidden');
+    footerEl.classList.add('hidden');
     return;
   }
-  document.getElementById('adm-table-body').innerHTML=`
-    <div style="overflow-x:auto;">
-    <table class="adm-table">
-      <thead><tr>
-        <th>Name</th><th>City</th><th>Age</th><th>Frequency</th><th>Would Try</th>
-        <th>Excitement</th><th>Buy Likelihood</th><th>Sample?</th><th>Date</th>
-      </tr></thead>
-      <tbody>
-        ${rows.map(r=>`
-          <tr onclick="openDrawer('${r.id}')">
-            <td><div class="td-name">${esc(r.name||'—')}</div><div class="td-muted">${esc(r.phone||'')}</div></td>
-            <td style="font-size:12px;">${esc(r.city||'—')}</td>
-            <td style="font-size:12px;">${esc(r.age_group||'—')}</td>
-            <td style="font-size:12px;">${esc(r.pickle_frequency||'—')}</td>
-            <td>${intBadge(r.would_try)}</td>
-            <td><span class="rating-pip">${r.excitement_score||'—'}<span style="font-size:10px;color:#3a5030;">/10</span></span></td>
-            <td><span class="rating-pip">${r.buy_likelihood||'—'}<span style="font-size:10px;color:#3a5030;">/10</span></span></td>
-            <td>${r.sample_phone?'<span style="color:#4ade80;font-size:12px;font-weight:700;">✓ Yes</span>':'<span style="color:#3a5030;font-size:12px;">—</span>'}</td>
-            <td style="font-size:11px;color:#3a5030;white-space:nowrap;">${r.submitted_at?new Date(r.submitted_at).toLocaleDateString('en-PK'):'—'}</td>
-          </tr>`).join('')}
-      </tbody>
-    </table>
-    </div>`;
-}
-function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  emptyEl.classList.add('hidden');
+  footerEl.classList.remove('hidden');
 
-/* ═══════════════════════════════════════
-   DRAWER
-═══════════════════════════════════════ */
-let currentResponse = null;
-function openDrawer(id) {
-  currentResponse = allResponses.find(r=>r.id===id);
-  if (!currentResponse) return;
-  const r = currentResponse;
-  document.getElementById('drw-title').textContent = r.name || 'Response';
-  document.getElementById('drw-body').innerHTML=`
-    <div class="drw-section">
-      <div class="drw-section-title">Scores</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
-        <div class="score-block"><div class="score-block-val">${r.excitement_score||'—'}</div><div class="score-block-label">Excitement /10</div></div>
-        <div class="score-block"><div class="score-block-val">${r.buy_likelihood||'—'}</div><div class="score-block-label">Buy Likelihood /10</div></div>
+  itemsEl.innerHTML = '';
+  cart.forEach(item => {
+    const lineTotal = item.price * item.qty;
+    const div = document.createElement('div');
+    div.className = 'flex gap-4 items-start';
+    div.innerHTML = `
+      <img src="${item.img}" class="w-16 h-16 rounded-xl object-cover flex-shrink-0">
+      <div class="flex-1 min-w-0">
+        <p class="font-semibold text-sm text-primary truncate">${item.name}</p>
+        <p class="text-xs text-on-surface-variant">${item.size}</p>
+        <div class="flex items-center gap-2 mt-2">
+          <button class="qty-btn bg-surface-container border border-outline-variant text-on-surface text-sm hover:bg-surface-container-high" onclick="changeCartQty('${item.cartKey}',-1)">−</button>
+          <span class="text-sm font-semibold w-5 text-center">${item.qty}</span>
+          <button class="qty-btn bg-surface-container border border-outline-variant text-on-surface text-sm hover:bg-surface-container-high" onclick="changeCartQty('${item.cartKey}',1)">+</button>
+        </div>
       </div>
-    </div>
-    <div class="drw-section">
-      <div class="drw-section-title">Personal Info</div>
-      <div class="drw-grid">
-        <div class="drw-field"><dt>Name</dt><dd class="white">${esc(r.name)}</dd></div>
-        <div class="drw-field"><dt>Phone</dt><dd>${r.phone?`<a href="https://wa.me/92${(r.phone||'').replace(/\D/g,'')}" target="_blank" style="color:#8dd9a8;">${esc(r.phone)}</a>`:'—'}</dd></div>
-        <div class="drw-field"><dt>City</dt><dd>${esc(r.city||'—')}</dd></div>
-        <div class="drw-field"><dt>Age Group</dt><dd>${esc(r.age_group||'—')}</dd></div>
+      <div class="text-right flex-shrink-0">
+        <p class="font-bold text-sm text-primary">PKR ${lineTotal.toLocaleString()}</p>
+        <p class="text-xs text-on-surface-variant">PKR ${item.price.toLocaleString()} each</p>
+        <button onclick="removeFromCart('${item.cartKey}')" class="text-xs text-error hover:underline mt-2 block">Remove</button>
       </div>
-    </div>
-    <div class="drw-section">
-      <div class="drw-section-title">Pickle Habits</div>
-      <div class="drw-grid">
-        <div class="drw-field" style="grid-column:1/-1"><dt>Frequency</dt><dd>${esc(r.pickle_frequency||'—')}</dd></div>
-        <div class="drw-field" style="grid-column:1/-1"><dt>Achar Types</dt><dd>${(r.achar_types||'').split(',').filter(Boolean).map(t=>`<span class="chip">${esc(t.trim())}</span>`).join('')||'—'}</dd></div>
-        <div class="drw-field" style="grid-column:1/-1"><dt>Achar Source</dt><dd>${esc(r.achar_source||'—')}</dd></div>
-      </div>
-    </div>
-    <div class="drw-section">
-      <div class="drw-section-title">Turşu Opinions</div>
-      <div class="drw-grid">
-        <div class="drw-field"><dt>Heard of Turşu?</dt><dd>${esc(r.tursu_awareness||'—')}</dd></div>
-        <div class="drw-field"><dt>Taste Preference</dt><dd>${esc(r.taste_preference||'—')}</dd></div>
-        <div class="drw-field"><dt>Oil-Free Reaction</dt><dd>${esc(r.oilfree_reaction||'—')}</dd></div>
-        <div class="drw-field"><dt>Health Knowledge</dt><dd>${esc(r.health_knowledge||'—')}</dd></div>
-<div class="drw-field"><dt>Would Recommend</dt><dd>${esc(r.would_recommend||'—')}</dd></div>
-<div class="drw-field" style="grid-column:1/-1"><dt>Benefits Appealing</dt><dd>${(r.benefits_appealing||'').split(',').filter(Boolean).map(v=>`<span class="chip">${esc(v.trim())}</span>`).join('')||'—'}</dd></div>
-<div class="drw-field" style="grid-column:1/-1"><dt>Achar Dislikes</dt><dd>${(r.achar_dislikes||'').split(',').filter(Boolean).map(v=>`<span class="chip">${esc(v.trim())}</span>`).join('')||'—'}</dd></div>
-<div class="drw-field" style="grid-column:1/-1"><dt>Meal Pairings</dt><dd>${(r.meal_pairings||'').split(',').filter(Boolean).map(v=>`<span class="chip">${esc(v.trim())}</span>`).join('')||'—'}</dd></div>
-<div class="drw-field" style="grid-column:1/-1"><dt>Trust Factors</dt><dd>${(r.trust_factors||'').split(',').filter(Boolean).map(v=>`<span class="chip">${esc(v.trim())}</span>`).join('')||'—'}</dd></div>
-        <div class="drw-field" style="grid-column:1/-1"><dt>Veg Preferences</dt><dd>${(r.veg_preferences||'').split(',').filter(Boolean).map(v=>`<span class="chip">${esc(v.trim())}</span>`).join('')||'—'}</dd></div>
-      </div>
-    </div>
-    <div class="drw-section">
-      <div class="drw-section-title">Buying Intent</div>
-      <div class="drw-grid">
-        <div class="drw-field"><dt>Would Try?</dt><dd class="white">${esc(r.would_try||'—')}</dd></div>
-        <div class="drw-field"><dt>Price Range</dt><dd>${esc(r.price_range||'—')}</dd></div>
-        <div class="drw-field" style="grid-column:1/-1"><dt>Where to Buy</dt><dd>${(r.buy_channels||'').split(',').filter(Boolean).map(c=>`<span class="chip">${esc(c.trim())}</span>`).join('')||'—'}</dd></div>
-        <div class="drw-field"><dt>Vs Table Achar</dt><dd>${esc(r.vs_achar_table||'—')}</dd></div>
-        <div class="drw-field" style="grid-column:1/-1"><dt>Concerns</dt><dd>${(r.concerns||'').split(',').filter(Boolean).map(c=>`<span class="chip">${esc(c.trim())}</span>`).join('')||'—'}</dd></div>
-      </div>
-    </div>
-    <div class="drw-section">
-      <div class="drw-section-title">Factor Ratings</div>
-      <div class="drw-grid">
-        <div class="drw-field"><dt>No Preservatives</dt><dd>${r.importance_natural||'—'}/5</dd></div>
-        <div class="drw-field"><dt>Shelf Life</dt><dd>${r.importance_shelf_life||'—'}/5</dd></div>
-        <div class="drw-field"><dt>Made Locally</dt><dd>${r.importance_local||'—'}/5</dd></div>
-        <div class="drw-field"><dt>Halal Certified</dt><dd>${r.importance_halal||'—'}/5</dd></div>
-      </div>
-    </div>
-    ${r.sample_phone?`<div class="drw-section"><div class="drw-section-title">Sample Request</div><div class="drw-field"><dt>Sample WhatsApp</dt><dd style="color:#4ade80;font-weight:700;"><a href="https://wa.me/92${(r.sample_phone||'').replace(/^0/,'').replace(/\D/,'')}" target="_blank" style="color:#4ade80;">${esc(r.sample_phone)}</a></dd></div></div>`:''}
-    ${r.comments?`<div class="drw-section"><div class="drw-section-title">Comments</div><div style="font-size:13px;color:#aaa;line-height:1.7;">${esc(r.comments)}</div></div>`:''}
-  `;
-  document.getElementById('adm-overlay').classList.add('open');
-  document.getElementById('adm-drawer').classList.add('open');
-}
-function closeDrawer() {
-  document.getElementById('adm-overlay').classList.remove('open');
-  document.getElementById('adm-drawer').classList.remove('open');
-}
-
-/* ═══════════════════════════════════════
-   SURVEY STATE
-═══════════════════════════════════════ */
-const scales = {};
-
-function setScale(key, val) {
-  scales[key] = val;
-  document.querySelectorAll(`#scale-${key} .scale-btn`).forEach((btn, i) => {
-    btn.classList.toggle('selected', i + 1 === val);
+    `;
+    itemsEl.appendChild(div);
   });
+  document.getElementById('cart-subtotal').textContent = 'PKR ' + cartTotal().toLocaleString();
 }
 
-function goStage(n) {
-  // Validate stage 0
-  if (n === 1) {
-    let ok = true;
-    if (!vField('name',  document.getElementById('inp-name').value.trim().length >= 2))  ok=false;
-    if (!vField('phone', /^0\d{9,11}$/.test(document.getElementById('inp-phone').value.replace(/\D/g,''))))  ok=false;
-    if (!vField('city',  document.getElementById('inp-city').value !== ''))    ok=false;
-    if (!vField('age',   document.getElementById('inp-age').value  !== ''))    ok=false;
-    if (!ok) { showToast('Please fill all required fields.'); return; }
+function openCart() {
+  document.getElementById('cart-drawer').classList.add('open');
+  document.getElementById('cart-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCart() {
+  document.getElementById('cart-drawer').classList.remove('open');
+  document.getElementById('cart-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function showAddedToast(name) {
+  const t = document.createElement('div');
+  t.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-emerald-deep text-white px-6 py-3 rounded-full text-sm font-semibold shadow-lg z-[100] flex items-center gap-2 transition-all';
+  t.innerHTML = `<span class="material-symbols-outlined text-heritage-gold text-lg" style="font-variation-settings:'FILL' 1;">check_circle</span> ${name} added to basket`;
+  document.body.appendChild(t);
+  setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 2000);
+}
+
+// ============================================================ CHECKOUT
+function renderCheckout() {
+  const itemsEl = document.getElementById('checkout-items');
+  itemsEl.innerHTML = '';
+  if (cart.length === 0) {
+    itemsEl.innerHTML = '<p class="text-sm text-on-surface-variant italic">Your basket is empty.</p>';
+    document.getElementById('checkout-subtotal').textContent = 'PKR 0';
+    document.getElementById('checkout-total').textContent = 'PKR 0';
+    return;
   }
-  // Validate stage 2 — try it
-  if (n === 3) {
-    const tried = document.querySelector('input[name="would-try"]:checked');
-    if (!tried) {
-      document.getElementById('try-err').style.display='block';
-      document.getElementById('try-err').scrollIntoView({behavior:'smooth',block:'center'});
-      showToast('Please answer if you would try turşu.');
-      return;
-    }
-    document.getElementById('try-err').style.display='none';
-  }
-
-  document.querySelectorAll('.stage').forEach(s=>s.classList.remove('active'));
-  document.getElementById('stage-'+n).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  const pcts  = ['5%','30%','60%','90%','100%'];
-  const steps = ['Step 1/4','Step 2/4','Step 3/4','Step 4/4','Done!'];
-  document.getElementById('progress-fill').style.width = pcts[n] || '100%';
-  document.getElementById('progress-pct').textContent  = steps[n] || 'Done!';
+  cart.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'flex justify-between items-start gap-3';
+    div.innerHTML = `
+      <div class="flex gap-3 items-start">
+        <img src="${item.img}" class="w-12 h-12 rounded-lg object-cover flex-shrink-0">
+        <div>
+          <p class="text-sm font-semibold text-primary">${item.name}</p>
+          <p class="text-xs text-on-surface-variant">${item.size} × ${item.qty}</p>
+        </div>
+      </div>
+      <p class="text-sm font-bold text-primary flex-shrink-0">PKR ${(item.price * item.qty).toLocaleString()}</p>
+    `;
+    itemsEl.appendChild(div);
+  });
+  const total = cartTotal();
+  document.getElementById('checkout-subtotal').textContent = 'PKR ' + total.toLocaleString();
+  document.getElementById('checkout-total').textContent = 'PKR ' + total.toLocaleString();
 }
 
-function vField(id, check) {
-  const wrap = document.getElementById('f-'+id);
-  const el   = document.getElementById('inp-'+id);
-  if (!wrap) return check;
-  if (!check) { wrap.classList.add('has-error'); if(el) el.classList.add('error'); }
-  else        { wrap.classList.remove('has-error'); if(el) el.classList.remove('error'); }
-  return check;
-}
+// FIX: placeOrder was missing — now implemented
+function placeOrder() {
+  const name = document.getElementById('co-name').value.trim();
+  const phone = document.getElementById('co-phone').value.trim();
+  const address = document.getElementById('co-address').value.trim();
+  const city = document.getElementById('co-city').value.trim();
+  const notes = document.getElementById('co-notes').value.trim();
 
-async function submitSurvey() {
-  const tryVal = document.querySelector('input[name="would-try"]:checked');
-  if (!tryVal) { document.getElementById('try-err').style.display='block'; showToast('Please answer would you try turşu.'); return; }
-
-  const btn  = document.getElementById('submit-btn');
-  const spin = document.getElementById('submit-spinner');
-  const txt  = document.getElementById('submit-text');
-  btn.disabled=true; spin.style.display='block'; txt.textContent='Submitting...';
-
-  const payload = {
-    name:               document.getElementById('inp-name').value.trim(),
-    phone:              document.getElementById('inp-phone').value.trim(),
-    city:               document.getElementById('inp-city').value,
-    age_group:          document.getElementById('inp-age').value,
-    pickle_frequency:   document.querySelector('input[name="freq"]:checked')?.value||null,
-    achar_types:        [...document.querySelectorAll('input[name="achar-type"]:checked')].map(c=>c.value).join(', '),
-    achar_source:       document.querySelector('input[name="achar-src"]:checked')?.value||null,
-    tursu_awareness:    document.querySelector('input[name="tursu-heard"]:checked')?.value||null,
-    taste_preference:   document.querySelector('input[name="taste-pref"]:checked')?.value||null,
-    veg_preferences:    [...document.querySelectorAll('input[name="veg-pref"]:checked')].map(c=>c.value).join(', '),
-    oilfree_reaction:   document.querySelector('input[name="oilfree-reaction"]:checked')?.value||null,
-    health_knowledge:   document.querySelector('input[name="health-know"]:checked')?.value||null,
-benefits_appealing: [...document.querySelectorAll('input[name="benefits"]:checked')].map(c=>c.value).join(', '),
-achar_dislikes:     [...document.querySelectorAll('input[name="achar-dislikes"]:checked')].map(c=>c.value).join(', '),
-meal_pairings:      [...document.querySelectorAll('input[name="meal-pair"]:checked')].map(c=>c.value).join(', '),
-trust_factors:      [...document.querySelectorAll('input[name="trust-factor"]:checked')].map(c=>c.value).join(', '),
-would_recommend:    document.querySelector('input[name="recommend"]:checked')?.value||null,
-    would_try:          tryVal.value,
-    buy_likelihood:     scales['buy']||null,
-    buy_channels:       [...document.querySelectorAll('input[name="buy-where"]:checked')].map(c=>c.value).join(', '),
-    price_range:        document.querySelector('input[name="price-range"]:checked')?.value||null,
-    importance_natural: scales['nat']||null,
-    importance_shelf_life: scales['shelf']||null,
-    importance_local:   scales['local']||null,
-    importance_halal:   scales['halal']||null,
-    vs_achar_table:     document.querySelector('input[name="compare-table"]:checked')?.value||null,
-    concerns:           [...document.querySelectorAll('input[name="concerns"]:checked')].map(c=>c.value).join(', '),
-    excitement_score:   scales['excited']||null,
-    sample_phone:       document.getElementById('inp-sample-phone').value.trim()||null,
-    comments:           document.getElementById('inp-comments').value.trim()||null,
-    submitted_at:       new Date().toISOString(),
-  };
-
-  if (window.sb) {
-    try {
-      await window.sb.from('tursu_survey').insert([payload]);
-    } catch(e) { console.error(e); }
+  if (!name || !phone || !address || !city) {
+    alert('Please fill in all required fields (Name, WhatsApp Number, Address, City) before placing your order.');
+    return;
   }
 
-  btn.disabled=false; spin.style.display='none'; txt.textContent='Submit My Response 🫙';
-  goStage('done');
-  document.getElementById('progress-fill').style.width='100%';
-  document.getElementById('progress-pct').textContent='Done!';
+  if (cart.length === 0) {
+    alert('Your basket is empty. Please add some items before placing an order.');
+    return;
+  }
+
+  let orderText = '🫙 *New Turcu House Order*\n\n';
+  orderText += `👤 *Name:* ${name}\n`;
+  orderText += `📱 *WhatsApp:* ${phone}\n`;
+  orderText += `📍 *Address:* ${address}, ${city}\n`;
+  if (notes) orderText += `📝 *Notes:* ${notes}\n`;
+  orderText += '\n*Order Summary:*\n';
+
+  cart.forEach(item => {
+    orderText += `• ${item.name} (${item.size}) × ${item.qty} = PKR ${(item.price * item.qty).toLocaleString()}\n`;
+  });
+
+  orderText += `\n💰 *Total (excl. delivery):* PKR ${cartTotal().toLocaleString()}\n`;
+  orderText += '\n_Please confirm delivery charges and estimated arrival. Thank you!_';
+
+  const encoded = encodeURIComponent(orderText);
+  window.open('https://wa.me/905338654078?text=' + encoded, '_blank');
 }
 
-/* ═══════════════════════════════════════
-   TOAST & UTILS
-═══════════════════════════════════════ */
-let toastT;
-function showToast(msg, type='') {
-  const t = document.getElementById('toast');
-  t.textContent=msg; t.className='toast show '+type;
-  clearTimeout(toastT);
-  toastT=setTimeout(()=>t.classList.remove('show'),3000);
-}
-function shareWA() {
-  window.open(`https://wa.me/?text=Fill%20this%202-min%20survey%20about%20Turkish%20Tur%C5%9Fu%20in%20Pakistan%3A%20${encodeURIComponent(window.location.href)}`,'_blank');
-}
-function copyLink() {
-  navigator.clipboard.writeText(window.location.href).then(()=>showToast('Link copied!','success'));
-}
+// ============================================================ INIT
+document.addEventListener('DOMContentLoaded', () => {
+  initShopGrid();
+  initHomeProducts();
+  updateCartUI();
+});
 </script>
 </body>
 </html>
